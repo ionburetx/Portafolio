@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: url('../imagenes/fondomain.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    z-index: 0;
+  }
+  
+  .overlay-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../imagenes/idiomas.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.3;
+    z-index: 1;
+    display: flex;
+    flex-direction: column; /* Coloca los botones uno debajo del otro */
+    justify-content: center; /* Centra los botones verticalmente */
+    align-items: center; /* Centra los botones horizontalmente */
+  }
+  
+  h2 {
+    font-size: 1.5rem; /* Tamaño de la fuente del título */
+    width: 40%;
+    text-align: left;
+    margin-left: 7vw;
+  }
+
+  h3 {
+    font-size: 1rem; /* Tamaño de la fuente del título */
+    text-align: left;
+    width: 40%;
+    margin-left: 7vw;
+    font-style: italic;
+  }
+  
+  /* Capa oscura para mejorar legibilidad */
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+  
+  /* Capa de transición */
+  .transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease-in-out;
+    z-index: 10; /* Asegúrate de que esté encima de todo */
+  }
+  
+  /* Icono RESET */
+  .reset-icon {
+    position: fixed; /* Fija el ícono en la pantalla */
+    bottom: 10px; /* Margen inferior */
+    left: 10px; /* Margen izquierdo */
+    font-size: 24px; /* Tamaño del ícono */
+    color: white; /* Color del ícono */
+      z-index: 10;
+      cursor: pointer;
+  }
+  
+  .reset-icon img {
+    width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+  }
+  
+  /*Boton ION*/
+  .ion-button {
+    position: fixed; /* Fija el botón en la pantalla */
+    width: 60px; /* Tamaño del botón */
+    top: 30px;
+    left: 25px; /* Margen izquierdo */
+    height: 60px;
+    z-index: 10; /* Asegúrate de que esté encima de otros elementos */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .ion-button:hover {
+    transform: rotate(360deg); /* Efecto de rotación al pasar el mouse */
+    transition: transform 0.5s ease, background-color 0.3s ease; /* Suaviza la rotación */
+  }
+  
+  .ion-icon {
+    width: 100%; /* Asegura que la imagen ocupe todo el botón */
+    height: auto; /* Mantiene la proporción de la imagen */
+  }
+  
+  .ion-button i {
+    font-size: 40px; /* Tamaño del ícono de Font Awesome */
+    color: white; /* Color del ícono */
+  }
