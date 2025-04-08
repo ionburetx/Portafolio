@@ -1,3 +1,17 @@
+// Transición de entrada al cargar la página
+document.addEventListener('DOMContentLoaded', function () {
+    const transitionOverlay = document.querySelector('.transition-overlay');
+
+    // Transición de entrada: de negro a visible
+    if (transitionOverlay) {
+        transitionOverlay.style.opacity = '1'; // Comienza en negro
+        setTimeout(() => {
+            transitionOverlay.style.transition = 'opacity 1s ease-in-out'; // Suaviza la transición
+            transitionOverlay.style.opacity = '0'; // Se desvanece a transparente
+        }, 100); // Pequeño retraso para asegurar que la transición se vea
+    }
+});
+
 // Transición de página de idioma a bienvenida
 document.addEventListener('DOMContentLoaded', function() {
     try {

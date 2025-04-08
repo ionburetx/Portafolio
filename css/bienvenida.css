@@ -71,8 +71,20 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 1s ease-in-out;
-    z-index: 10; /* Asegúrate de que esté encima de todo */
+    z-index: 1000; /* Asegúrate de que esté encima de todo */
   }
+
+  /* Clase para la transición de entrada */
+.page-loading {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Clase para la transición de salida */
+.page-exiting {
+  opacity: 1;
+  pointer-events: all;
+}
   
   /* Icono RESET */
   .reset-icon {

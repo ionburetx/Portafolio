@@ -49,12 +49,23 @@
     vertical-align: baseline;
   }
   
-  .biografia {
+  .biografiah1 {
+    display: inline-block;
+    vertical-align: middle;
     font-size: 4rem;
     text-align: left;
     margin-left: 10vw;
     margin-top: 5vh;
-    width: 40vw; /* Ancho de la biografía */
+  }
+
+  h2 {
+    display: inline-block; /* Asegura que el elemento sea tratado como un bloque en línea */
+    transform: rotateX(180deg);
+    transition: transform 0.5s ease; /* Suaviza la animación */
+  }
+
+  h2:hover {
+    transform: rotateX(0deg); /* Gira el elemento de abajo hacia arriba */
   }
   
   .biografiah2 {
@@ -66,15 +77,16 @@
   .biografiah3 {
     font-size: 2rem; /* Tamaño de la fuente del título */
     text-align: left;
-    margin-left: 10vw;
     margin-left: 20vw;
+    margin-top: -9.5vh;
   }
   
   .biografiap {
     font-size: 1rem; /* Tamaño de la fuente del párrafo */
     line-height: 1.5; /* Espaciado entre líneas */
     margin-left: 10vw;
-    width: 40vw; /* Ancho del párrafo */
+    margin-top: 2vw;
+    width: 34vw; /* Ancho del párrafo */
     text-align: left;
   }
   
