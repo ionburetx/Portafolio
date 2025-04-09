@@ -47,6 +47,18 @@
     margin-left: 7vw;
     font-style: italic;
   }
+
+  .boton-aqui {
+    color: tomato; /* Cambia el color del texto */
+    text-decoration: none; /* Elimina el subrayado */
+    font-weight: bold; /* Hace el texto más grueso */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+    transition: color 0.3s ease; /* Suaviza el cambio de color */
+  }
+  
+  .boton-aqui:hover {
+    color: darkred; /* Cambia el color al pasar el ratón */
+  }
   
   /* Capa oscura para mejorar legibilidad */
   body::before {

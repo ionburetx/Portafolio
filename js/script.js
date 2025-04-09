@@ -35,13 +35,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 });
+
 //Transicion de pagina de bienvenida a biografia
 document.addEventListener('DOMContentLoaded', function () {
-    const ionButton = document.querySelector('.ion-button');
+    const botonAqui = document.querySelector('.boton-aqui');
     const transitionOverlay = document.querySelector('.transition-overlay');
 
-    ionButton.addEventListener('click', function (e) {
-        e.preventDefault(); // Evita el comportamiento predeterminado del enlace
+    botonAqui.addEventListener('click', function (e) {
+        e.preventDefault(); // Evita la navegación inmediata
 
         // Activa la transición a negro
         transitionOverlay.style.opacity = '1';
