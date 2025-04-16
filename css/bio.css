@@ -63,8 +63,8 @@
   .biografiah3 {
     font-size: 2rem; /* Tamaño de la fuente del título */
     text-align: left;
-    margin-left: 20vw;
-    margin-top: -9.5vh;
+    margin-left: 16vw;
+    margin-top: -8vh;
   }
   
   .biografiap {
@@ -72,7 +72,7 @@
     line-height: 1.5; /* Espaciado entre líneas */
     margin-left: 10vw;
     margin-top: 2vw;
-    width: 34vw; /* Ancho del párrafo */
+    width: 24vw; /* Ancho del párrafo */
     text-align: left;
   }
   
@@ -122,29 +122,6 @@
     opacity: 0.5; 
     margin-left: 65vw;
   }
-
-  @keyframes slide-in-right {
-    0% {
-      transform: translateX(100%); /* Comienza fuera de la pantalla por el lado derecho */
-      opacity: 0; /* Comienza invisible */
-    }
-    100% {
-      transform: translateX(0); /* Termina en su posición original */
-      opacity: 1; /* Se vuelve completamente visible */
-    }
-  }
-
-/* Animación para deslizar desde la derecha */
-@keyframes slide-in-right {
-  0% {
-    transform: translateX(100%); /* Comienza fuera de la pantalla por la derecha */
-    opacity: 0; /* Comienza invisible */
-  }
-  100% {
-    transform: translateX(0); /* Termina en su posición original */
-    opacity: 1; /* Se vuelve completamente visible */
-  }
-}
 
 /*BOTONES*/
 /* Contenedor de los botones */
