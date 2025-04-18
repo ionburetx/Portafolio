@@ -36,21 +36,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-//Transicion de pagina de bienvenida a biografia
-document.addEventListener('DOMContentLoaded', function () {
+// Transición de página de bienvenida a biografía
+document.addEventListener('DOMContentLoaded', function() {
     const botonAqui = document.querySelector('.boton-aqui');
-    const transitionOverlay = document.querySelector('.transition-overlay');
+    const transitionOverlay = document.querySelector('.transition-overlay'); // Asegúrate de que existe
+    
+    if (botonAqui && transitionOverlay) {
+        botonAqui.addEventListener('click', function(e) {
+            e.preventDefault(); // Evita la navegación inmediata
 
-    botonAqui.addEventListener('click', function (e) {
-        e.preventDefault(); // Evita la navegación inmediata
+            // Activa la transición a negro
+            transitionOverlay.style.opacity = '1';
+            transitionOverlay.style.pointerEvents = 'all';
 
-        // Activa la transición a negro
-        transitionOverlay.style.opacity = '1';
-        transitionOverlay.style.pointerEvents = 'all';
-
-        // Espera a que termine la transición y redirige
-        setTimeout(function () {
-            window.location.href = 'biografia.html';
-        }, 1000); // Tiempo en milisegundos (1s) para que coincida con la duración de la transición
-    });
+            // Espera a que termine la transición y redirige
+            setTimeout(function() {
+                window.location.href = 'biografia.html';
+            }, 1000); // 1 segundo (igual que la duración de la transición en CSS)
+        });
+    } else {
+        console.error("No se encontró el botón (.boton-aqui) o el overlay (.transition-overlay)");
+    }
 });

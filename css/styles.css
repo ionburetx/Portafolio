@@ -77,3 +77,9 @@ body::before {
   z-index: 10; /* Asegúrate de que esté encima de todo */
 }
 
+@media (max-width: 768px), (hover: none) {
+  body {
+    background-position: 100% center !important; /* Fuerza la posición */
+    border: 2px solid red; /* Solo para debug: elimínalo después */
+  }
+}
