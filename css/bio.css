@@ -1,254 +1,298 @@
+/* ============================================= */
+/* RESET Y ESTILOS GLOBALES */
+/* ============================================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-    background-size: cover;
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    text-align: center;
-    z-index: 0;
-  }
-  
-  .logo {
-    position: absolute; /* Posiciona la imagen en la esquina superior izquierda */
-    top: 10px; /* Margen superior */
-    left: 10px; /* Margen izquierdo */
-    width: 50px; /* Ajusta el ancho del logo */
-    height: auto; /* Mantiene la proporción de la imagen */
-    z-index: 5; 
-    margin: 1rem;
-  }
-  
-  .bioentero {
-    margin-top: 30vh;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .text-bio {
-    display: flex; /* Coloca los elementos en línea */
-    justify-content: flex-start; /* Alinea los elementos a la izquierda */
-    vertical-align: baseline;
-  }
-  
-  .biografiah1 {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 4rem;
-    text-align: left;
-    margin-left: 10vw;
-    margin-top: 5vh;
-  }
+body {
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  position: relative;
+}
 
-  h2 {
-    display: inline-block; /* Asegura que el elemento sea tratado como un bloque en línea */
-    transform: rotateX(180deg);
-    transition: transform 0.5s ease; /* Suaviza la animación */
-  }
+/* ============================================= */
+/* COMPONENTES REUTILIZABLES */
+/* ============================================= */
+.ion-button {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  h2:hover {
-    transform: rotateX(0deg); /* Gira el elemento de abajo hacia arriba */
-  }
-  
+.ion-button i {
+  font-size: 30px;
+  color: white;
+  transition: transform 0.5s ease;
+}
+
+.ion-button:hover i {
+  transform: rotate(360deg);
+}
+
+.reset-icon {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  font-size: 24px;
+  color: white;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease-in-out;
+  z-index: 1000;
+}
+
+/* ============================================= */
+/* SECCIÓN BIOGRAFÍA - MOBILE FIRST */
+/* ============================================= */
+.bioentero {
+  margin-top: 15vh;
+  padding: 0 5vw;
+}
+
+.text-bio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0 1rem;
+  margin-bottom: 0;
+  align-items: baseline; /* Alinea por la línea base del texto */
+  line-height: 0.7; /* Reduce el espacio entre líneas */
+}
+
+.biografiah1, 
+.biografiah2 {
+  align-self: flex-start; /* Fuerza alineación superior individual */
+  margin-top: 0; /* Elimina cualquier margen superior */
+  line-height: 1; /* Elimina espacio extra debajo */
+}
+
+.biografiah1 {
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  /* Ajustes específicos: */
+  padding-top: 0.5rem; /* Compensa cualquier desalineación */
+  transform: translateY(0.2em); /* Ajuste fino vertical */
+}
+
+.biografiah2 {
+  font-size: clamp(6rem, 12vw, 8rem);
+  color: tomato;
+  /* Ajustes específicos: */
+  line-height: 0.7; /* Reduce el espacio inferior */
+  transform: translateY(-0.1em); /* Ajuste fino vertical */
+  margin-top: 1rem;
+  margin-left: -0.7rem; /* Ajuste fino horizontal */
+  padding-top: 0;
+}
+
+.biografiah2:hover {
+  transform: rotateX(180deg);
+}
+
+@media (hover: none) and (pointer: coarse) {
   .biografiah2 {
-    font-size: 10rem; /* Tamaño de la fuente del título */
-    text-align: left;
-    color: tomato;
+    animation: flipAnimation 3s infinite ease-in-out;
   }
   
-  .biografiah3 {
-    font-size: 2rem; /* Tamaño de la fuente del título */
-    text-align: left;
-    margin-left: 20vw;
-    margin-top: -9.5vh;
+  @keyframes flipAnimation {
+    0%, 60% {
+      transform: rotateX(0deg);
+    }
+    70%, 100% {
+      transform: rotateX(180deg);
+    }
   }
-  
-  .biografiap {
-    font-size: 1rem; /* Tamaño de la fuente del párrafo */
-    line-height: 1.5; /* Espaciado entre líneas */
-    margin-left: 10vw;
-    margin-top: 2vw;
-    width: 34vw; /* Ancho del párrafo */
-    text-align: left;
-  }
-  
-  /* Estilo de los botones */
-  .language-btn {
-    margin: 10px 0; /* Espaciado entre los botones */
-    padding: 0px 120px;
-    font-size: 6.5rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+}
+
+.biografiah3 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin: -1.1rem 0 1rem 4rem;
+  width: 15.5%;
+
+}
+
+.biografiap {
+  font-size: clamp(1rem, 3.5vw, 1.2rem); 
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  text-align: left;
+  width: 90%;
+}
+
+/* IMÁGENES */
+.retratofoto,
+.retratobyn,
+.retratodg {
+  width: 80%;
+  height: auto;
+  opacity: 0.5;
+  margin: 0 auto 2rem;
+  display: block;
+}
+
+.retratobyn {
+  transform: scaleX(-1);
+}
+
+/* BOTONES SECCIONES */
+.botones-secciones {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem auto;
+  width: 90%;
+}
+
+.boton-seccion {
+  background: none;
+  color: white;
+  border: 1px solid white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  opacity: 0;
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.boton-seccion:hover {
+  transform: scale(1.05);
+}
+
+/* Animaciones */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(50px);
     opacity: 0;
   }
-
-  /*IMAGENES*/
-  .contenedor-imagenes {
-    position: relative;
-    z-index: 1; /* Asegúrate de que el contenedor esté detrás de los botones */
-  }
-
-  .retratofoto {
-    position: relative;
-    width: 35%; 
-    height: auto;
-    z-index: 5; 
-    opacity: 0.5; 
-    margin-left: 65vw;
-
-  }
-
-  .retratobyn {
-    position: relative;
-    width: 35%; 
-    height: auto; 
-    z-index: 5;
-    opacity: 0.5; /* La imagen se ve parcialmente al principio */
-    transform: scaleX(-1); /
-  }
-
-  .retratodg {
-    position: relative;
-    width: 35%; 
-    height: auto; 
-    z-index: 5;
-    opacity: 0.5; 
-    margin-left: 65vw;
-  }
-
-  @keyframes slide-in-right {
-    0% {
-      transform: translateX(100%); /* Comienza fuera de la pantalla por el lado derecho */
-      opacity: 0; /* Comienza invisible */
-    }
-    100% {
-      transform: translateX(0); /* Termina en su posición original */
-      opacity: 1; /* Se vuelve completamente visible */
-    }
-  }
-
-/* Animación para deslizar desde la derecha */
-@keyframes slide-in-right {
-  0% {
-    transform: translateX(100%); /* Comienza fuera de la pantalla por la derecha */
-    opacity: 0; /* Comienza invisible */
-  }
-  100% {
-    transform: translateX(0); /* Termina en su posición original */
-    opacity: 1; /* Se vuelve completamente visible */
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
-/*BOTONES*/
-/* Contenedor de los botones */
-.botones-secciones {
-  position: absolute;
-  top: 50%; /* Centra verticalmente */
-  right: 0px; /* Margen derecho */
-  transform: translateY(-50%); /* Ajusta el centrado vertical */
-  display: flex;
-  flex-direction: column; /* Coloca los botones en columna */
-  gap: 5vw; /* Espaciado entre los botones */
-  z-index: 100;
-  margin-top: 2vw;
-  margin-right: 8vw;
-}
-
-/* Estilo general para los botones */
-.boton-seccion {
-  position: relative; /* Posiciona el botón en relación a su contenedor */
-  background: none;
-  color: white; /* Color del texto */
-  border: none; /* Sin borde */
-  padding: 10px 20px; /* Espaciado interno */
-  font-size: 1.2rem; /* Tamaño de la fuente */
-  font-family: 'Roboto', sans-serif; /* Fuente */
-  cursor: pointer; /* Cambia el cursor al pasar el ratón */
-  opacity: 0; /* Comienza invisible */
-  animation: slide-in-right 1s ease-out forwards; /* Aplica la animación */
-  z-index: 100;
-}
-
-/* Retrasos para que los botones aparezcan escalonados */
 .fotografia {
-  animation-delay: 0.5s; /* Retraso para el primer botón */
+  animation: slide-in-right 1s ease-out 0.5s forwards;
 }
 
 .desarrollo-front-end {
-  animation-delay: 1s; /* Retraso para el tercer botón */
+  animation: slide-in-right 1s ease-out 1s forwards;
 }
 
 .diseno-grafico {
-  animation-delay: 1.5s; /* Retraso para el segundo botón */
+  animation: slide-in-right 1s ease-out 1.5s forwards;
 }
 
-/* Efecto hover para los botones */
-.boton-seccion:hover {
-  transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+/* ============================================= */
+/* MEDIA QUERIES - TABLET (768px) */
+/* ============================================= */
+@media (min-width: 768px) {
+  .bioentero {
+    margin-top: 15vh;
+    padding: 0 8vw; /* Aumentamos padding lateral ligeramente */
+    display: block;
+  }
+
+  .text-bio {
+    margin-bottom: 0;
+    line-height: 0.7; /* Igual que móvil */
+  }
+
+  .biografiah1 {
+    font-size: 4rem; /* 60% más grande que móvil */
+    transform: translateY(0.2em); /* Mismo ajuste fino */
+    padding-top: 0.5rem;
+  }
+
+  .biografiah2 {
+    font-size: 8rem; /* 33% más grande que móvil */
+    line-height: 0.7;
+    transform: translateY(-0.1em);
+    margin-top: 1rem;
+    margin-left: -0.9rem; /* Ajuste proporcional */
+  }
+
+  .biografiah3 {
+    font-size: 2.2rem; /* 47% más grande que móvil */
+    margin: -1.3rem 0 1.5rem 6rem; /* Ajustes proporcionales */
+    width: auto; /* Eliminamos ancho fijo */
+  }
+
+  .biografiap {
+    font-size: 1.3rem; /* 30% más grande que móvil */
+    width: 80%; /* Más ancho que móvil */
+    margin-bottom: 3rem;
+  }
+
 }
-  
-  /* Capa de transición */
-  .transition-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1s ease-in-out;
-    z-index: 10; /* Asegúrate de que esté encima de todo */
+
+/* ============================================= */
+/* MEDIA QUERIES - DESKTOP (1024px) */
+/* ============================================= */
+@media (min-width: 1024px) {
+  .bioentero {
+    margin-top: 15vh; /* Igual que móvil/tablet */
+    padding: 0 12vw; /* Más espacio lateral */
+    max-width: 1400px; /* Limitamos ancho máximo */
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  /* Icono RESET */
-  .reset-icon {
-    position: fixed; /* Fija el ícono en la pantalla */
-    bottom: 10px; /* Margen inferior */
-    left: 10px; /* Margen izquierdo */
-    font-size: 24px; /* Tamaño del ícono */
-    color: white; /* Color del ícono */
-      z-index: 10;
-      cursor: pointer;
+
+  .text-bio {
+    grid-column: 1;
   }
-  
-  .reset-icon img {
-    width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
+
+  .biografiah1 {
+    font-size: 5rem; /* 100% más grande que móvil */
   }
-  
-  /*Boton ION*/
-  .ion-button {
-    position: fixed; /* Fija el botón en la pantalla */
-    width: 60px; /* Tamaño del botón */
-    top: 30px;
-    left: 25px; /* Margen izquierdo */
-    height: 60px;
-    z-index: 10; /* Asegúrate de que esté encima de otros elementos */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  .biografiah2 {
+    transform: translateY(-0.2em); /* Ajuste para desktop */
+    line-height: 0.65;
+    font-size: 10rem; /* 67% más grande que móvil */
+    margin-left: -1.2rem; /* Ajuste proporcional */
   }
-  
-  .ion-button:hover {
-    transform: rotate(360deg); /* Efecto de rotación al pasar el mouse */
-    transition: transform 0.5s ease, background-color 0.3s ease; /* Suaviza la rotación */
+  /* Mantén el efecto hover para desktop */
+@media (hover: hover) and (pointer: fine) {
+  .biografiah2 {
+    transition: transform 0.5s ease;
   }
-  
-  .ion-icon {
-    width: 100%; /* Asegura que la imagen ocupe todo el botón */
-    height: auto; /* Mantiene la proporción de la imagen */
+  .biografiah2:hover {
+    transform: rotateX(180deg);
   }
-  
-  .ion-button i {
-    font-size: 40px; /* Tamaño del ícono de Font Awesome */
-    color: white; /* Color del ícono */
+}
+
+  .biografiah3 {
+    font-size: 2.8rem; /* 87% más grande que móvil */
+    margin: -1.6rem 0 2rem 8rem; /* Ajustes proporcionales */
   }
+
+  .biografiap {
+    font-size: 1.5rem; /* 50% más grande que móvil */
+    width: 70%;
+    margin-bottom: 4rem;
+  }
+}

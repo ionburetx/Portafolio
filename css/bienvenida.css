@@ -1,7 +1,3 @@
-/* ============================================= */
-/* RESET Y ESTILOS GLOBALES */
-/* ============================================= */
-
 * {
   margin: 0;
   padding: 0;
@@ -26,7 +22,7 @@
 }
 
 .main-contenido {
-  padding: 0vh 5vw;
+  padding-top: 25vh;
   position: relative;
   z-index: 2;
 }
@@ -41,7 +37,7 @@
   text-align: left;
   margin-left: 5vw;
   line-height: 1.3;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .subtitulo {
@@ -68,12 +64,12 @@
 /* COMPONENTES REUTILIZABLES */
 /* ============================================= */
 
-.boton-ion {
+.ion-button {
   position: fixed;
-  width: clamp(50px, 12vw, 80px);
-  height: clamp(50px, 12vw, 80px);
-  top: clamp(20px, 3vh, 40px);
-  left: clamp(20px, 3vw, 40px);
+  width: 60px;
+  height: 60px;
+  top: 25px;
+  left: 25px;
   z-index: 10;
   cursor: pointer;
   display: flex;
@@ -81,21 +77,21 @@
   align-items: center;
 }
 
-.boton-ion i {
-  font-size: clamp(30px, 7vw, 50px);
+.ion-button i {
+  font-size: 40px;
   color: white;
   transition: transform 0.5s ease;
 }
 
-.boton-ion:hover i {
+.ion-button:hover i {
   transform: rotate(360deg);
 }
 
 .boton-reset {
   position: fixed;
-  bottom: clamp(15px, 2vh, 30px);
-  left: clamp(15px, 2vw, 30px);
-  font-size: clamp(20px, 5vw, 30px);
+  bottom: 20px;
+  left: 20px;
+  font-size: 30px;
   color: white;
   z-index: 10;
   cursor: pointer;
@@ -143,22 +139,5 @@
   .subtitulo {
     width: 40%;
     font-size: 1rem;
-  }
-  
-  .boton-ion {
-    width: 60px;
-    height: 60px;
-    top: 30px;
-    left: 25px;
-  }
-  
-  .boton-ion i {
-    font-size: 40px;
-  }
-  
-  .boton-reset {
-    font-size: 24px;
-    bottom: 10px;
-    left: 10px;
   }
 }
