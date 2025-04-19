@@ -129,7 +129,9 @@ body {
 .biografiah3 {
   font-size: clamp(1.5rem, 5vw, 2.5rem);
   margin: -1.1rem 0 1rem 4rem;
-  width: 15.5%;
+  width: auto;
+  display: block; /* Aseguramos que ocupe su propia línea */
+  clear: both;
 
 }
 
@@ -206,6 +208,24 @@ body {
   animation: slide-in-right 1s ease-out 1.5s forwards;
 }
 
+/* Añadimos un media query específico para el rango problemático */
+@media (min-width: 530px) and (max-width: 767px) {
+  .biografiah3 {
+    margin-left: 5rem; /* Ajustamos el margen izquierdo */
+    margin-top: -1.2rem; /* Ajuste fino vertical */
+  }
+  
+  /* Aseguramos que el contenedor .text-bio no tenga overflow */
+  .text-bio {
+    overflow: hidden;
+  }
+  
+  /* Ajustamos el h2 para que no empuje al h3 */
+  .biografiah2 {
+    margin-right: 0.5rem; /* Añadimos espacio a la derecha */
+  }
+}
+
 /* ============================================= */
 /* MEDIA QUERIES - TABLET (768px) */
 /* ============================================= */
@@ -253,46 +273,41 @@ body {
 /* MEDIA QUERIES - DESKTOP (1024px) */
 /* ============================================= */
 @media (min-width: 1024px) {
-  .bioentero {
-    margin-top: 15vh; /* Igual que móvil/tablet */
-    padding: 0 12vw; /* Más espacio lateral */
-    max-width: 1400px; /* Limitamos ancho máximo */
-    margin-left: auto;
-    margin-right: auto;
+  .text-bio {
+    display: flex;
+    flex-direction: column; /* Cambiamos a columna */
+    align-items: flex-start;
   }
 
-  .text-bio {
-    grid-column: 1;
+  .biografiah1, 
+  .biografiah2 {
+    display: inline-block; /* Mantenemos en línea h1 y h2 */
+    vertical-align: bottom; /* Alineamos por la base */
   }
 
   .biografiah1 {
-    font-size: 5rem; /* 100% más grande que móvil */
+    font-size: 3rem;
+    transform: none;
   }
 
   .biografiah2 {
-    transform: translateY(-0.2em); /* Ajuste para desktop */
-    line-height: 0.65;
-    font-size: 10rem; /* 67% más grande que móvil */
-    margin-left: -1.2rem; /* Ajuste proporcional */
+    font-size: 10rem;
+    margin: -5rem 0 0 8rem;
+    transform: none;
+    line-height: 0.7;
   }
-  /* Mantén el efecto hover para desktop */
-@media (hover: hover) and (pointer: fine) {
-  .biografiah2 {
-    transition: transform 0.5s ease;
-  }
-  .biografiah2:hover {
-    transform: rotateX(180deg);
-  }
-}
 
   .biografiah3 {
-    font-size: 2.8rem; /* 87% más grande que móvil */
-    margin: -1.6rem 0 2rem 8rem; /* Ajustes proporcionales */
+    font-size: 2rem;
+    margin: -1.5rem 0 1.5rem 4.5rem; /* Margen negativo para subir */
+    width: 100%;
+    order: 1; /* Forzamos posición después de h1/h2 */
   }
 
-  .biografiap {
-    font-size: 1.5rem; /* 50% más grande que móvil */
-    width: 70%;
-    margin-bottom: 4rem;
+  /* Mantenemos el efecto hover para desktop */
+  @media (hover: hover) {
+    .biografiah2:hover {
+      transform: rotateX(180deg);
+    }
   }
 }
