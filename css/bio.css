@@ -22,8 +22,8 @@ body {
   position: fixed;
   width: 50px;
   height: 50px;
-  top: 20px;
-  left: 20px;
+  top: 10px;
+  left: 10px;
   z-index: 10;
   cursor: pointer;
   display: flex;
@@ -67,9 +67,25 @@ body {
 /* ============================================= */
 /* SECCIÓN BIOGRAFÍA - MOBILE FIRST */
 /* ============================================= */
+.image-container {
+  position: relative; /* Permite posicionar hijos absolutos */
+  width: 100%;
+  margin-top: 10vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 .bioentero {
-  margin-top: 15vh;
+  position: absolute; /* Superpone el texto */
+  top: 0;
+  left: 0;
+  width: 100%;
   padding: 0 5vw;
+  margin-top: 15vh; /* Ajusta según necesites */
 }
 
 .text-bio {
@@ -77,7 +93,7 @@ body {
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 0 1rem;
-  margin-bottom: 0;
+  margin-top: 30vh;
   align-items: baseline; /* Alinea por la línea base del texto */
   line-height: 0.7; /* Reduce el espacio entre líneas */
 }
@@ -94,41 +110,39 @@ body {
   /* Ajustes específicos: */
   padding-top: 0.5rem; /* Compensa cualquier desalineación */
   transform: translateY(0.2em); /* Ajuste fino vertical */
+  margin: -1vh 0 0 0;
 }
 
 .biografiah2 {
-  font-size: clamp(6rem, 12vw, 8rem);
+  font-size: clamp(6.5rem, 12vw, 8rem);
   color: tomato;
-  /* Ajustes específicos: */
-  line-height: 0.7; /* Reduce el espacio inferior */
-  transform: translateY(-0.1em); /* Ajuste fino vertical */
-  margin-top: 1rem;
-  margin-left: -0.7rem; /* Ajuste fino horizontal */
+  line-height: 0.7;
+  transform: rotateX(180deg) translateY(-0.1em); 
+  transform-style: preserve-3d;
+  margin-left: -0.7rem;
   padding-top: 0;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-.biografiah2:hover {
-  transform: rotateX(180deg);
-}
-
-@media (hover: none) and (pointer: coarse) {
   .biografiah2 {
-    animation: flipAnimation 3s infinite ease-in-out;
+    animation: flipAnimation 10s infinite ease-in-out;
   }
   
   @keyframes flipAnimation {
-    0%, 60% {
-      transform: rotateX(0deg);
+    0% {
+      transform: rotateX(180deg) translateY(-0.1em);
     }
-    70%, 100% {
-      transform: rotateX(180deg);
+    10%, 50% {
+      transform: rotateX(0deg) translateY(-0.1em);
+    }
+    60%, 100% {
+      transform: rotateX(180deg) translateY(-0.1em);
     }
   }
-}
 
 .biografiah3 {
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
-  margin: -1.1rem 0 1rem 4rem;
+  font-size: clamp(1rem, 5vw, 2.5rem);
+  margin: -1.5rem 0 1rem 4.8rem;
   width: auto;
   display: block; /* Aseguramos que ocupe su propia línea */
   clear: both;
@@ -136,178 +150,34 @@ body {
 }
 
 .biografiap {
-  font-size: clamp(1rem, 3.5vw, 1.2rem); 
-  line-height: 1.5;
-  margin-bottom: 2rem;
+  font-size: clamp(0.8rem, 3.5vw, 1.2rem); 
+  line-height: 1.1;
+  margin: 2vh 0 0 27vw;
   text-align: left;
-  width: 90%;
+  width: 68%;
 }
 
-/* IMÁGENES */
-.retratofoto,
-.retratobyn,
-.retratodg {
-  width: 80%;
-  height: auto;
-  opacity: 0.5;
-  margin: 0 auto 2rem;
-  display: block;
+.flecha {
+  position: absolute;
+  left: 60%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  color: white; /* Color de la flecha */
+  font-size: 2rem;
+  opacity: 1;
+  z-index: 10;
+  margin-top: 18vh;
 }
 
-.retratobyn {
-  transform: scaleX(-1);
-}
-
-/* BOTONES SECCIONES */
-.botones-secciones {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 2rem auto;
-  width: 90%;
-}
-
-.boton-seccion {
-  background: none;
-  color: white;
-  border: 1px solid white;
-  padding: 12px 20px;
-  font-size: 1rem;
-  font-family: 'Roboto', sans-serif;
-  cursor: pointer;
-  opacity: 0;
-  transition: transform 0.3s ease;
-  width: 100%;
-}
-
-.boton-seccion:hover {
-  transform: scale(1.05);
-}
-
-/* Animaciones */
-@keyframes slide-in-right {
-  from {
-    transform: translateX(50px);
-    opacity: 0;
+/* Animación de rebote */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0) translateX(-50%);
   }
-  to {
-    transform: translateX(0);
-    opacity: 1;
+  40% {
+      transform: translateY(-20px) translateX(-50%);
   }
-}
-
-.fotografia {
-  animation: slide-in-right 1s ease-out 0.5s forwards;
-}
-
-.desarrollo-front-end {
-  animation: slide-in-right 1s ease-out 1s forwards;
-}
-
-.diseno-grafico {
-  animation: slide-in-right 1s ease-out 1.5s forwards;
-}
-
-/* Añadimos un media query específico para el rango problemático */
-@media (min-width: 530px) and (max-width: 767px) {
-  .biografiah3 {
-    margin-left: 5rem; /* Ajustamos el margen izquierdo */
-    margin-top: -1.2rem; /* Ajuste fino vertical */
-  }
-  
-  /* Aseguramos que el contenedor .text-bio no tenga overflow */
-  .text-bio {
-    overflow: hidden;
-  }
-  
-  /* Ajustamos el h2 para que no empuje al h3 */
-  .biografiah2 {
-    margin-right: 0.5rem; /* Añadimos espacio a la derecha */
-  }
-}
-
-/* ============================================= */
-/* MEDIA QUERIES - TABLET (768px) */
-/* ============================================= */
-@media (min-width: 768px) {
-  .bioentero {
-    margin-top: 15vh;
-    padding: 0 8vw; /* Aumentamos padding lateral ligeramente */
-    display: block;
-  }
-
-  .text-bio {
-    margin-bottom: 0;
-    line-height: 0.7; /* Igual que móvil */
-  }
-
-  .biografiah1 {
-    font-size: 4rem; /* 60% más grande que móvil */
-    transform: translateY(0.2em); /* Mismo ajuste fino */
-    padding-top: 0.5rem;
-  }
-
-  .biografiah2 {
-    font-size: 8rem; /* 33% más grande que móvil */
-    line-height: 0.7;
-    transform: translateY(-0.1em);
-    margin-top: 1rem;
-    margin-left: -0.9rem; /* Ajuste proporcional */
-  }
-
-  .biografiah3 {
-    font-size: 2.2rem; /* 47% más grande que móvil */
-    margin: -1.3rem 0 1.5rem 6rem; /* Ajustes proporcionales */
-    width: auto; /* Eliminamos ancho fijo */
-  }
-
-  .biografiap {
-    font-size: 1.3rem; /* 30% más grande que móvil */
-    width: 80%; /* Más ancho que móvil */
-    margin-bottom: 3rem;
-  }
-
-}
-
-/* ============================================= */
-/* MEDIA QUERIES - DESKTOP (1024px) */
-/* ============================================= */
-@media (min-width: 1024px) {
-  .text-bio {
-    display: flex;
-    flex-direction: column; /* Cambiamos a columna */
-    align-items: flex-start;
-  }
-
-  .biografiah1, 
-  .biografiah2 {
-    display: inline-block; /* Mantenemos en línea h1 y h2 */
-    vertical-align: bottom; /* Alineamos por la base */
-  }
-
-  .biografiah1 {
-    font-size: 3rem;
-    transform: none;
-  }
-
-  .biografiah2 {
-    font-size: 10rem;
-    margin: -5rem 0 0 8rem;
-    transform: none;
-    line-height: 0.7;
-  }
-
-  .biografiah3 {
-    font-size: 2rem;
-    margin: -1.5rem 0 1.5rem 4.5rem; /* Margen negativo para subir */
-    width: 100%;
-    order: 1; /* Forzamos posición después de h1/h2 */
-  }
-
-  /* Mantenemos el efecto hover para desktop */
-  @media (hover: hover) {
-    .biografiah2:hover {
-      transform: rotateX(180deg);
-    }
+  60% {
+      transform: translateY(-10px) translateX(-50%);
   }
 }
