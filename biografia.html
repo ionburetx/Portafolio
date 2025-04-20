@@ -12,27 +12,64 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
     <body>
-        <header>
+        <header class="header-container">
             <a href="index.html" class="ion-button">
                 <i class="fas fa-atom"></i> <!-- Cambia "fa-rocket" por el ícono que prefieras -->
-                </a>
+            </a>
+            <button class="menu-hamburguesa" id="menuButton">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </button>
+            <nav class="menu-nav" id="menuNav">
+                <ul>
+                    <li><a href="#sobre-mi">Sobre mí</a></li>
+                    <li><a href="#trabajos">Trabajos</a></li>
+                    <li><a href="#cv">CV</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
         </header>
         <main>
-            <div class="image-container">
-                <img src="imagenes\ionretrato.png" alt="Ion">
-                <section class="bioentero">
-                    <section class="text-bio">
-                        <h1 class="biografiah1">HOLA</h1>
-                        <h2 class="biografiah2">ion</h2>
-                        <h3 class="biografiah3">Soy</h3>
+            <section id="sobre-mi" class="section">
+                <div class="image-container">
+                    <img src="imagenes\ionretrato.png" alt="Ion">
+                    <section class="bioentero">
+                        <section class="text-bio">
+                            <h1 class="biografiah1">HOLA</h1>
+                            <h2 class="biografiah2">ion</h2>
+                            <h3 class="biografiah3">Soy</h3>
+                        </section>
+                    <p class="biografiap">Un apasionado del sector artístico en cada una de sus ramas. Me dedico al diseño gráfico, desarrollo front end y la fotografía.<br>
+                    ¿Quieres ver alguno de mis trabajos?</p>
                     </section>
-                <p class="biografiap">Un apasionado del sector artístico en cada una de sus ramas. Me dedico al diseño gráfico, desarrollo front end y la fotografía.<br>
-                ¿Quieres ver alguno de mis trabajos?</p>
-                </section>
-            </div>
-            <div class="flecha">
-                <i class="fas fa-chevron-down"></i>
-            </div>
+                    <div class="flecha">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </section>
+
+            <section id="trabajos" class="section">
+                <div class="section-content">
+                    <h2>Trabajos</h2>
+                    <!-- Contenido de trabajos -->
+                </div>
+            </section>
+            
+            <section id="cv" class="section">
+                <div class="section-content">
+                    <h2>CV</h2>
+                    <!-- Contenido de CV -->
+                </div>
+            </section>
+            
+            <section id="contacto" class="section">
+                <div class="section-content">
+                    <h2>Contacto</h2>
+                    <!-- Contenido de contacto -->
+                </div>
+            </section>
+            
             <div class="transition-overlay"></div>
         </main>
         <footer>

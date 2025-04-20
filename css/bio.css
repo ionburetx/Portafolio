@@ -13,17 +13,28 @@ body {
   background-color: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   position: relative;
+  overflow-x: hidden;
+  padding-top: 70px;
 }
 
 /* ============================================= */
-/* COMPONENTES REUTILIZABLES */
+/* HEADER */
 /* ============================================= */
-.ion-button {
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
   position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+.ion-button {
   width: 50px;
   height: 50px;
-  top: 10px;
-  left: 10px;
   z-index: 10;
   cursor: pointer;
   display: flex;
@@ -41,16 +52,86 @@ body {
   transform: rotate(360deg);
 }
 
-.reset-icon {
+.menu-hamburguesa {
   position: fixed;
-  bottom: 15px;
-  left: 15px;
-  font-size: 24px;
-  color: white;
-  z-index: 101;
+  background: transparent;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  border: none;
   cursor: pointer;
-  opacity: 1
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0;
 }
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background: white;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Estado abierto del menú */
+.menu-hamburguesa.abierto .hamburger-line:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.menu-hamburguesa.abierto .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-hamburguesa.abierto .hamburger-line:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+
+.menu-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 70%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  transition: right 0.3s ease-in-out;
+  z-index: 1001;
+  padding-top: 80px;
+}
+
+.menu-nav.mostrar {
+  right: 0;
+}
+
+.menu-nav ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 20px;
+}
+
+.menu-nav li {
+  margin-bottom: 25px;
+}
+
+.menu-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+  display: block;
+}
+
+.menu-nav a:hover {
+  color: tomato;
+}
+
+/* ============================================= */
+/* COMPONENTES REUTILIZABLES */
+/* ============================================= */
 
 .transition-overlay {
   position: fixed;
@@ -68,11 +149,14 @@ body {
 /* ============================================= */
 /* SECCIÓN BIOGRAFÍA - MOBILE FIRST */
 /* ============================================= */
+.section {
+  padding-top: 100px; /* Aumenta este valor para bajar todo el contenido */
+  min-height: 100vh;
+  position: relative;
+}
+
 .image-container {
   position: relative; /* Permite posicionar hijos absolutos */
-  width: 100%;
-  height: 100vh;
-  margin-top: 10vh;
 }
 
 .image-container img {
@@ -89,7 +173,7 @@ img {
 
 .bioentero {
   position: absolute; /* Superpone el texto */
-  top: 50%;
+  top: 80%;
   transform: translateY(-50%);
   left: 0;
   width: 100%;
@@ -207,46 +291,46 @@ img {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px); /* Opcional: pequeño desplazamiento desde abajo */
+    transform: translateY(10px); 
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+/* ============================================= */
+/* FLECHA */
+/* ============================================= */
+.flecha {
+  position: absolute;
+  bottom: 5vh;
+  top: 130%;
+  left: 60%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 2rem;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 2.5s;
+}
 
+/* ============================================= */
+/* FOOTER */
+/* ============================================= */
 footer {
   position: fixed;
   bottom: 15px;
   left: 15px;
   z-index: 100;
 }
-/* ============================================= */
-/* FLECHA */
-/* ============================================= */
-.flecha {
+.reset-icon {
   position: fixed;
-  bottom: 80px;
-  left: 60%;
-  transform: translateX(-50%);
-  animation: bounce 2s infinite;
+  bottom: 15px;
+  left: 15px;
+  font-size: 24px;
   color: white;
-  font-size: 2rem;
-  opacity: 1;
-  z-index: 10;
-  pointer-events: auto;
-  margin-top: -70vh;
-}
-
-/* Animación de rebote */
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0) translateX(-50%);
-  }
-  40% {
-      transform: translateY(-20px) translateX(-50%);
-  }
-  60% {
-      transform: translateY(-10px) translateX(-50%);
-  }
+  z-index: 101;
+  cursor: pointer;
+  opacity: 1
 }

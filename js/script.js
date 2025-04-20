@@ -58,3 +58,77 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("No se encontró el botón (.boton-aqui) o el overlay (.transition-overlay)");
     }
 });
+
+// ================
+//MENU HAMBURGUESA
+//=================
+document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.getElementById('menuButton');
+    const menuNav = document.getElementById('menuNav');
+    
+    // Función para alternar el menú
+    function toggleMenu() {
+        menuNav.classList.toggle('mostrar');
+        menuButton.classList.toggle('abierto');
+        
+        // Bloquear el scroll del body cuando el menú está abierto
+        if (menuNav.classList.contains('mostrar')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // Evento click en el botón
+    menuButton.addEventListener('click', toggleMenu);
+    
+    // Cerrar menú al hacer clic en enlace
+    document.querySelectorAll('.menu-nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Solo cerrar el menú si es un enlace interno (#)
+            if (this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                toggleMenu();
+                
+                // Scroll suave
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }, 400); // Espera a que el menú se cierre
+                }
+            }
+        });
+    });
+    
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        if (!menuNav.contains(e.target) && !menuButton.contains(e.target)) {
+            menuNav.classList.remove('mostrar');
+            menuButton.classList.remove('abierto');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+//FLECHA SCROLL
+document.addEventListener('DOMContentLoaded', function () {
+    const flecha = document.querySelector('.flecha');
+    const trabajos = document.querySelector('#trabajos');
+
+    if (flecha && trabajos) {
+        flecha.addEventListener('click', function () {
+            window.scrollTo({
+                top: trabajos.offsetTop - 70,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
+
+
