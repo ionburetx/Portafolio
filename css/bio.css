@@ -193,6 +193,88 @@ body {
 }
 
 /* ============================================= */
+/* SECCIÓNES
+/* ============================================= */
+
+.section-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  overflow: hidden; /* Oculta los elementos que se deslizan fuera inicialmente */
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.circle-line {
+  width: 50px;
+  height: 2px;
+  background-color: #000;
+  position: relative;
+}
+
+.circle-line::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #000;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Línea izquierda: desliza desde la izquierda */
+.left-line {
+  transform: translateX(-100%); /* Inicia fuera de la pantalla (izquierda) */
+  animation: slideFromLeft 0.5s ease-out forwards;
+}
+
+.left-line::before {
+  right: 0; /* Círculo al final de la línea izquierda */
+}
+
+/* Línea derecha: desliza desde la derecha */
+.right-line {
+  transform: translateX(100%); /* Inicia fuera de la pantalla (derecha) */
+  animation: slideFromRight 0.5s ease-out forwards;
+}
+
+.right-line::before {
+  left: 0; /* Círculo al inicio de la línea derecha */
+}
+
+/* Animaciones */
+@keyframes slideFromLeft {
+  to {
+    transform: translateX(0); /* Termina en su posición natural */
+  }
+}
+
+@keyframes slideFromRight {
+  to {
+    transform: translateX(0); /* Termina en su posición natural */
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* Hace visible el título */
+  }
+}
+
+.titulosection h2 {
+  margin: 0 20px;
+  font-size: 24px;
+  opacity: 0; /* Inicia invisible */
+  animation: fadeIn 0.5s ease-out forwards 0.5s; /* Aparece después de que las líneas se deslicen */
+}
+
+/* ============================================= */
 /* SECCIÓN BIOGRAFÍA - MOBILE FIRST */
 /* ============================================= */
 
