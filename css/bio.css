@@ -95,13 +95,29 @@ body {
 .menu-nav {
   position: fixed;
   top: 0;
-  right: -100%;
-  width: 70%;
+  right: -55%;
+  width: 50%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.95);
-  transition: right 0.3s ease-in-out;
+  transition: right 0.4s ease-out;
   z-index: 1001;
-  padding-top: 80px;
+
+  /* Bordes redondeados grandes con ajuste de contenido */
+  border-top-left-radius: 150px;
+  border-bottom-left-radius: 0;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+  
+  /* Nuevo: Ajuste para el contenido */
+  padding: 0;
+  overflow: hidden;
+}
+
+.menu-nav-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow-y: auto;
 }
 
 .menu-nav.mostrar {
@@ -109,10 +125,15 @@ body {
 }
 
 .menu-nav ul {
-  display: flex;
-  flex-direction: column;
+  position: absolute;
+  top: 70px; /* Misma posición vertical que el botón */
+  right: 30px; /* Mismo margen derecho que el botón */
   list-style: none;
-  padding: 20px;
+  width: auto;
+  min-width: 200px;
+  margin: 0;
+  padding: 0;
+  text-align: right;
 }
 
 .menu-nav li {
@@ -123,13 +144,36 @@ body {
   color: white;
   text-decoration: none;
   font-size: 1.2rem;
-  transition: color 0.3s ease;
-  display: block;
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
 }
 
 .menu-nav a:hover {
   color: tomato;
+  transform: translateX(-10px);
 }
+
+/* Efecto visual para los enlaces */
+.menu-nav a::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: tomato;
+  transition: width 0.3s ease;
+}
+
+.menu-nav a:hover::after {
+  width: 100%;
+  left: 0;
+  right: auto;
+}
+
+
 
 /* ============================================= */
 /* COMPONENTES REUTILIZABLES */
