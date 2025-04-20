@@ -33,8 +33,10 @@ body {
 }
 
 .ion-button {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  top: 20px;
+  left: 20px;
   z-index: 10;
   cursor: pointer;
   display: flex;
@@ -42,13 +44,13 @@ body {
   align-items: center;
 }
 
-.ion-button i {
-  font-size: 30px;
-  color: white;
+.logo{
+  width: 30px;
+  height: 30px;
   transition: transform 0.5s ease;
 }
 
-.ion-button:hover i {
+.ion-button:hover img {
   transform: rotate(360deg);
 }
 
@@ -149,6 +151,11 @@ body {
 /* ============================================= */
 /* SECCIÓN BIOGRAFÍA - MOBILE FIRST */
 /* ============================================= */
+
+#sobre-mi {
+  margin-bottom: -70px; /* "Empuja" la sección "Trabajos" hacia arriba */
+}
+
 .section {
   padding-top: 100px; /* Aumenta este valor para bajar todo el contenido */
   min-height: 100vh;
@@ -173,7 +180,7 @@ img {
 
 .bioentero {
   position: absolute; /* Superpone el texto */
-  top: 80%;
+  top: 85%;
   transform: translateY(-50%);
   left: 0;
   width: 100%;
@@ -304,7 +311,7 @@ img {
 .flecha {
   position: absolute;
   bottom: 5vh;
-  top: 130%;
+  top: 145%;
   left: 60%;
   transform: translateX(-50%);
   color: white;

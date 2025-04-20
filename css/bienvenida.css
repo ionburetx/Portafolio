@@ -66,10 +66,10 @@
 
 .ion-button {
   position: fixed;
-  width: 60px;
-  height: 60px;
-  top: 25px;
-  left: 25px;
+  width: 40px;
+  height: 40px;
+  top: 20px;
+  left: 20px;
   z-index: 10;
   cursor: pointer;
   display: flex;
@@ -77,13 +77,13 @@
   align-items: center;
 }
 
-.ion-button i {
-  font-size:40px;
-  color: white;
+.logo{
+  width: 30px;
+  height: 30px;
   transition: transform 0.5s ease;
 }
 
-.ion-button:hover i {
+.ion-button:hover img {
   transform: rotate(360deg);
 }
 
