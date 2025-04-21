@@ -463,7 +463,7 @@ img {
 /* SECCIÓN CONTACTO */
 /* ============================================= */
 
-.section-contacto {
+.section-content {
   display: flex;
   flex-direction: column;
   align-items: center;
