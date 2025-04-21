@@ -1,4 +1,3 @@
-// Transición de entrada al cargar la página
 document.addEventListener('DOMContentLoaded', function () {
     const transitionOverlay = document.querySelector('.transition-overlay');
 
@@ -30,16 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     } catch (e) {
-        setTimeout(function() {
-            window.location.href = 'bienvenida.html';
-        }, 1000);
+        console.error("Error en la transición de idioma:", e);
     }
 });
 
 // Transición de página de bienvenida a biografía
 document.addEventListener('DOMContentLoaded', function() {
     const botonAqui = document.querySelector('.boton-aqui');
-    const transitionOverlay = document.querySelector('.transition-overlay'); // Asegúrate de que existe
+    const transitionOverlay = document.querySelector('.transition-overlay');
     
     if (botonAqui && transitionOverlay) {
         botonAqui.addEventListener('click', function(e) {
@@ -88,18 +85,28 @@ document.addEventListener('DOMContentLoaded', function() {
             // Solo cerrar el menú si es un enlace interno (#)
             if (this.getAttribute('href').startsWith('#')) {
                 e.preventDefault();
-                toggleMenu();
-                
-                // Scroll suave
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 
+                toggleMenu(); // Cierra el menú primero
+                
+                // Scroll suave con ajuste para cada sección
                 if (targetElement) {
                     setTimeout(() => {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
+                        const headerHeight = document.querySelector('.header-container').offsetHeight;
+                        
+                        // Ajuste especial para la sección de contacto
+                        if (targetId === '#contacto') {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - headerHeight - 20, // Ajuste adicional para contacto
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - headerHeight, // Ajuste estándar para otras secciones
+                                behavior: 'smooth'
+                            });
+                        }
                     }, 400); // Espera a que el menú se cierre
                 }
             }
@@ -123,17 +130,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (flecha && trabajos) {
         flecha.addEventListener('click', function () {
+            const headerHeight = document.querySelector('.header-container').offsetHeight;
             window.scrollTo({
-                top: trabajos.offsetTop - 70,
+                top: trabajos.offsetTop - headerHeight,
                 behavior: 'smooth'
             });
         });
     }
 });
 
-// ===============================
-//PROVANDO TRANSICIONES DEL SCROLL
-//================================
 // Función para verificar si un elemento está en el viewport
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
@@ -141,4 +146,4 @@ function isInViewport(element) {
       rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
       rect.bottom >= 0
     );
-  }
+}

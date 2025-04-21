@@ -227,7 +227,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px 0;
   overflow: hidden; /* Oculta los elementos que se deslizan fuera inicialmente */
 }
 .section-title {
@@ -292,13 +291,6 @@ body {
   to {
     opacity: 1; /* Hace visible el título */
   }
-}
-
-.titulosection h2 {
-  margin: 0 20px;
-  font-size: 24px;
-  opacity: 0; /* Inicia invisible */
-  animation: fadeIn 0.5s ease-out forwards 0.5s; /* Aparece después de que las líneas se deslicen */
 }
 
 /* ============================================= */
@@ -462,6 +454,22 @@ img {
 /* ============================================= */
 /* SECCIÓN CONTACTO */
 /* ============================================= */
+
+* Ajustes específicos para la sección Contacto */
+#contacto {
+    scroll-margin-top: 100px; /* Previene que el título quede detrás del header */
+    padding-top: 50px;
+    margin-top: -30px;
+}
+
+.section-content {
+    padding-top: 30px !important;
+}
+
+/* Asegura que el header no tape el contenido */
+body {
+    scroll-padding-top: 70px;
+}
 
 .section-content {
   display: flex;
