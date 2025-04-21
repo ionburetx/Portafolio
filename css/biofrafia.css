@@ -32,21 +32,15 @@ body {
   z-index: 1000;
 }
 
-.ion-button {
+.logo{
+  position: fixed;
   width: 40px;
   height: 40px;
-  top: 20px;
-  left: 20px;
   z-index: 10;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.logo{
-  width: 30px;
-  height: 30px;
   transition: transform 0.5s ease;
 }
 
@@ -223,23 +217,25 @@ body {
 /* SECCIÓNES
 /* ============================================= */
 
+.section {
+  min-height: 100vh;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden; /* Oculta el contenido que se desliza fuera de la pantalla */
+}
+
 .section-content {
   display: flex;
+  margin-top: -30px;
   justify-content: center;
   align-items: center;
   overflow: hidden; /* Oculta los elementos que se deslizan fuera inicialmente */
 }
-.section-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 0;
-}
 
 .circle-line {
-  width: 50px;
+  width: 270px;
   height: 2px;
-  background-color: #000;
+  background-color: #ffffff;
   position: relative;
 }
 
@@ -248,7 +244,7 @@ body {
   position: absolute;
   width: 8px;
   height: 8px;
-  background-color: #000;
+  background-color: #ffffff;
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
@@ -317,10 +313,11 @@ body {
   animation-delay: 2s;
 }
 
-img {
+img.miRetrato{
   max-width: 100%;
   height: auto;
   display: block;
+  margin-top: 20px;
 }
 
 .bioentero {
@@ -462,10 +459,6 @@ img {
     margin-top: -30px;
 }
 
-.section-content {
-    padding-top: 30px !important;
-}
-
 /* Asegura que el header no tape el contenido */
 body {
     scroll-padding-top: 70px;
@@ -475,7 +468,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px 0;
   overflow: hidden;
   width: 100%;
 }
