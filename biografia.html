@@ -79,40 +79,53 @@
             </section>
             
             <section id="contacto" class="section">
-                <div class="section-content">
+                <div class="section-contacto">
                     <span class="circle-line left-line"></span>
                     <h2 class="titulosection">Contacto</h2>
                     <span class="circle-line right-line"></span>
-                    <h3>¡Envíame un mensaje!</h3>
-                    <p class="contact-subtitle">¿Tienes alguna pregunta o propuesta, o simplemente quieres saludar? ¡Adelante!</p>
+                    <div class="contacto-social-icons">
+                        <a href="https://instagram.com/ionburetx" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://github.com/ionburetx" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/ion-burgoa-204156324" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <div class="contacto-contenido">
+                        <h3 class="tituloMensaje">¡Envíame un mensaje!</h3>
+                        <h4 class="subtituloMensaje">¿Tienes alguna pregunta o propuesta, o simplemente quieres saludar? ¡Adelante!</h4>
         
-                    <form id="contactForm" class="contact-form" action="https://formsubmit.co/tu-email@dominio.com" method="POST">
-                         <!-- Campo Nombre -->
-                        <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
+                        <form id="contactForm" class="contact-form" action="https://formsubmit.co/ionburgoa1@gmail.com" method="POST">
+                            <!-- Campo Nombre -->
+                            <div class="form-group">
+                                <label for="name">Nombre</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
             
-                        <!-- Campo Email -->
-                        <div class="form-group">
-                            <label for="email">Dirección de correo electrónico</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
+                            <!-- Campo Email -->
+                            <div class="form-group">
+                                <label for="email">Dirección de correo electrónico</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
             
-                        <!-- Campo Mensaje -->
-                        <div class="form-group">
-                            <label for="message">Tu mensaje</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
+                            <!-- Campo Mensaje -->
+                            <div class="form-group">
+                                <label for="message">Tu mensaje</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
             
-                        <!-- Botón Enviar -->
-                        <button type="submit" class="submit-btn">DISPARAR</button>
+                            <!-- Botón Enviar -->
+                            <button type="submit" class="submit-btn">DISPARAR</button>
             
-                        <!-- Configuración adicional para FormSubmit -->
-                        <input type="hidden" name="_next" value="https://tudominio.com/gracias.html">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                    </form>
+                            <!-- Configuración adicional para FormSubmit -->
+                            <input type="hidden" name="_next" value="https://tudominio.com/gracias.html">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                        </form>
+                    </div>
                 </div>
             </section>
             

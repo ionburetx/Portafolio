@@ -131,4 +131,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
+// ===============================
+//PROVANDO TRANSICIONES DEL SCROLL
+//================================
+// Función para verificar si un elemento está en el viewport
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
+  }
