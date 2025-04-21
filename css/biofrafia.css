@@ -85,7 +85,6 @@ body {
   transform: translateY(-10px) rotate(-45deg);
 }
 
-
 .menu-nav {
   position: fixed;
   top: 0;
@@ -95,13 +94,9 @@ body {
   background-color: rgba(0, 0, 0, 0.95);
   transition: right 0.4s ease-out;
   z-index: 1001;
-
-  /* Bordes redondeados grandes con ajuste de contenido */
   border-top-left-radius: 150px;
   border-bottom-left-radius: 0;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-  
-  /* Nuevo: Ajuste para el contenido */
   padding: 0;
   overflow: hidden;
 }
@@ -214,29 +209,23 @@ body {
 }
 
 /* ============================================= */
-/* SECCIÓNES
+/* SECCIÓN ASPECTOS GENERALES
 /* ============================================= */
 
 .section {
   min-height: 100vh;
   margin-bottom: 20px;
+  margin-top: -30px;
   position: relative;
   overflow: hidden; /* Oculta el contenido que se desliza fuera de la pantalla */
 }
 
-.section-content {
-  display: flex;
-  margin-top: -30px;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Oculta los elementos que se deslizan fuera inicialmente */
-}
-
 .circle-line {
-  width: 270px;
   height: 2px;
   background-color: #ffffff;
   position: relative;
+  width: 70%; /* Ocupa la mitad del ancho del contenedor */
+  max-width: 300px;
 }
 
 .circle-line::before {
@@ -252,8 +241,9 @@ body {
 
 /* Línea izquierda: desliza desde la izquierda */
 .left-line {
-  transform: translateX(-100%); /* Inicia fuera de la pantalla (izquierda) */
-  animation: slideFromLeft 0.5s ease-out forwards;
+  align-self: flex-start; /* Se alinea al inicio (izquierda) */
+  transform: translateX(-100%); /* Inicia fuera de la pantalla */
+  animation: slideFromLeft 1.5s ease-out forwards;
 }
 
 .left-line::before {
@@ -262,8 +252,9 @@ body {
 
 /* Línea derecha: desliza desde la derecha */
 .right-line {
-  transform: translateX(100%); /* Inicia fuera de la pantalla (derecha) */
-  animation: slideFromRight 0.5s ease-out forwards;
+  align-self: flex-end; /* Se alinea al final (derecha) */
+  transform: translateX(100%); /* Inicia fuera de la pantalla */
+  animation: slideFromRight 1.5s ease-out forwards;
 }
 
 .right-line::before {
@@ -289,6 +280,17 @@ body {
   }
 }
 
+h2.titulosection {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  opacity: 0; /* Inicia oculto */
+  animation: fadeIn 2s ease-out forwards;
+}
+
+
 /* ============================================= */
 /* SECCIÓN BIOGRAFÍA  */
 /* ============================================= */
@@ -309,7 +311,7 @@ body {
 
 .image-container img {
   opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
+  animation: fadeIn 2s ease-out forwards;
   animation-delay: 2s;
 }
 
@@ -467,7 +469,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
   width: 100%;
 }
 
@@ -598,7 +599,7 @@ body {
 .flecha {
   position: absolute;
   bottom: 5vh;
-  top: 145%;
+  top: 140%;
   left: 60%;
   transform: translateX(-50%);
   color: white;
