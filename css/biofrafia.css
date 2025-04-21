@@ -294,7 +294,7 @@ body {
 /* ============================================= */
 
 #sobre-mi {
-  margin-bottom: -70px; /* "Empuja" la sección "Trabajos" hacia arriba */
+  margin-bottom: 30px; /* "Empuja" la sección "Trabajos" hacia arriba */
 }
 
 .section {
@@ -455,8 +455,7 @@ img.miRetrato{
 * Ajustes específicos para la sección Contacto */
 #contacto {
     scroll-margin-top: 100px; /* Previene que el título quede detrás del header */
-    padding-top: 50px;
-    margin-top: -30px;
+    margin-top: -20px;
 }
 
 /* Asegura que el header no tape el contenido */
