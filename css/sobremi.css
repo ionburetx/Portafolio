@@ -1,0 +1,175 @@
+/* ============================================= */
+/* SECCIÓN SOBRE MI  */
+/* ============================================= */
+
+#sobre-mi {
+    margin-bottom: 30px; /* "Empuja" la sección "Trabajos" hacia arriba */
+  }
+  
+  .section {
+    padding-top: 100px; /* Aumenta este valor para bajar todo el contenido */
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  .image-container {
+    position: relative; /* Permite posicionar hijos absolutos */
+  }
+  
+  .image-container img {
+    opacity: 0;
+    animation: fadeIn 2s ease-out forwards;
+    animation-delay: 2s;
+  }
+  
+  img.miRetrato{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+  }
+  
+  .bioentero {
+    position: absolute; /* Superpone el texto */
+    top: 85%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    padding: 0 5vw;
+    margin-top: 15vh;
+  }
+  
+  .text-bio {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0 1rem;
+    align-items: baseline; /* Alinea por la línea base del texto */
+    line-height: 0.7; /* Reduce el espacio entre líneas */
+  }
+  
+  .biografiah1, 
+  .biografiah2 {
+    align-self: flex-start; /* Fuerza alineación superior individual */
+    margin-top: 0; /* Elimina cualquier margen superior */
+    line-height: 1; /* Elimina espacio extra debajo */
+  }
+  
+  .biografiah1 {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    padding-top: 0.5rem; /* Compensa cualquier desalineación */
+    transform: translateY(0.2em); /* Ajuste fino vertical */
+    margin: -1vh 0 0 0;
+    animation: slideFromRight 1.2s ease-out forwards;
+  }
+  
+  @keyframes slideFromRight {
+    from {
+      transform: translateX(100vw) translateY(0.2em);
+    }
+    to {
+      transform: translateX(0) translateY(0.2em);
+    }
+  }
+  
+  .biografiah2 {
+    font-size: clamp(6.5rem, 12vw, 8rem);
+    color: tomato;
+    line-height: 0.7;
+    transform: rotateX(180deg) translateY(-0.1em); 
+    transform-style: preserve-3d;
+    margin-left: -0.7rem;
+    padding-top: 0;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    animation: slideFromTop 1.5s ease-out forwards; 
+    animation: slideFromTop 1.5s ease-out forwards,
+    flipAnimation 10s 1.5s infinite ease-in-out;
+  }
+    
+  @keyframes slideFromTop {
+    from {
+      transform: translateY(-100vh) rotateX(180deg) translateY(-0.1em);
+    }
+    to {
+      transform: rotateX(180deg) translateY(-0.1em); /* Mantiene la rotación inicial */
+    }
+  }
+  
+    @keyframes flipAnimation {
+      0% {
+        transform: rotateX(180deg) translateY(-0.1em);
+      }
+      10%, 50% {
+        transform: rotateX(0deg) translateY(-0.1em);
+      }
+      60%, 100% {
+        transform: rotateX(180deg) translateY(-0.1em);
+      }
+    }
+  
+  .biografiah3 {
+    font-size: clamp(1rem, 5vw, 2.5rem);
+    margin: -1.5rem 0 1rem 4.8rem;
+    width: auto;
+    display: block; /* Aseguramos que ocupe su propia línea */
+    clear: both;
+    opacity: 0;
+    transform: translateX(0); /* Asegura posición final */
+    animation: slideFromLeft 1.2s ease-out 0.3s forwards;
+  }
+  
+  @keyframes slideFromLeft {
+    from {
+      transform: translateX(-100vw);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .biografiap {
+    font-size: clamp(0.8rem, 3.5vw, 1.2rem); 
+    line-height: 1.1;
+    margin: 2vh 0 0 27vw;
+    text-align: left;
+    width: 68%;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 2.5s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px); 
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+/* ============================================= */
+/* FLECHA */
+/* ============================================= */
+.flecha {
+    position: absolute;
+    bottom: 5vh;
+    top: 140%;
+    left: 60%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 2.5s;
+  }
