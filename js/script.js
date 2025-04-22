@@ -182,3 +182,92 @@ if (document.readyState === 'loading') {
 } else {
     setupAccordions();
 }
+
+// ======================
+//MARCADORES SECCIONES CV 
+//=======================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos del menú
+    const menuItems = {
+        sobreMi: document.querySelector('#apartadosCv h4:nth-child(1)'),
+        estudios: document.querySelector('#apartadosCv h4:nth-child(2)'),
+        experiencia: document.querySelector('#apartadosCv h4:nth-child(3)')
+    };
+
+    // Secciones a observar
+    const sections = {
+        bio: document.querySelector('.miBio'),
+        estudios: document.querySelector('.cv-items'),
+        experiencia: document.querySelector('.cv-item:nth-child(5)') // Ajusta este selector según tu estructura
+    };
+
+    // Configuraciones específicas para cada sección
+    const sectionConfigs = {
+        bio: {
+            rootMargin: '-20% 0px -50% 0px', // Se activa cuando está en el 20% superior
+            threshold: 0
+        },
+        estudios: {
+            rootMargin: '-60% 0px -40% 0px', // Se activa cuando está más abajo (60% desde el top)
+            threshold: 0
+        },
+        experiencia: {
+            rootMargin: '-40% 0px -50% 0px', // Se mantiene como estaba
+            threshold: 0
+        }
+    };
+
+    // Crear observers para cada sección
+    const observers = {
+        bio: new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    resetActiveItems();
+                    menuItems.sobreMi.classList.add('active');
+                }
+            });
+        }, sectionConfigs.bio),
+        
+        estudios: new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    resetActiveItems();
+                    menuItems.estudios.classList.add('active');
+                }
+            });
+        }, sectionConfigs.estudios),
+        
+        experiencia: new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    resetActiveItems();
+                    menuItems.experiencia.classList.add('active');
+                }
+            });
+        }, sectionConfigs.experiencia)
+    };
+
+    // Función para resetear todos los items
+    function resetActiveItems() {
+        Object.values(menuItems).forEach(item => item.classList.remove('active'));
+    }
+
+    // Observar las secciones con sus respectivos observers
+    if (sections.bio) observers.bio.observe(sections.bio);
+    if (sections.estudios) observers.estudios.observe(sections.estudios);
+    if (sections.experiencia) observers.experiencia.observe(sections.experiencia);
+
+    // Activar "Sobre mi" por defecto si está visible al cargar
+    const checkInitialPosition = () => {
+        if (sections.bio) {
+            const bioRect = sections.bio.getBoundingClientRect();
+            if (bioRect.top >= 0 && bioRect.bottom <= window.innerHeight) {
+                resetActiveItems();
+                menuItems.sobreMi.classList.add('active');
+            }
+        }
+    };
+
+    setTimeout(checkInitialPosition, 100);
+});

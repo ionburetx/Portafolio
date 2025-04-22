@@ -10,6 +10,8 @@
     gap: 30px; /* Espacio entre columnas */
     width: 100%;
     margin-top: 3rem;
+    height: 80vh; /* Altura fija para el contenedor */
+    overflow: hidden; /* Oculta el scroll general */
 }
 
 .cv-columna-izquierda {
@@ -18,13 +20,24 @@
     top: 20px;
     align-self: flex-start;
     box-sizing: border-box;
-    height: fit-content;
+    height: 100%;
 }
 
 .cv-columna-derecha {
     flex: 1; /* Ocupa el 70% restante */
     box-sizing: border-box;
     margin-left: -5vw;
+    height: 100%; /* Ocupa toda la altura */
+    overflow-y: auto; 
+}
+
+/* Ajustes para el scroll (opcional) */
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 5px;
 }
 
 h3.nombre {
@@ -53,8 +66,14 @@ h3.nombre {
     transition: color 0.3s;
 }
 
-#apartadosCv h4:hover {
-    color: tomato; /* Efecto hover para mejor interacción */
+#apartadosCv h4.active {
+    color: tomato; /* Mismo color que en el hover */
+    font-weight: bold;
+}
+
+/* Posicionamiento para la detección de scroll */
+.cv-columna-derecha {
+    position: relative;
 }
 
 p.miBio {
