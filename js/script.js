@@ -271,3 +271,71 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setTimeout(checkInitialPosition, 100);
 });
+
+// ======================
+//ANIMACIÓN LOGO EN BIENVENIDA 
+//=======================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const startButton = document.getElementById('start-animation');
+    const body = document.body;
+    const animatedLogo = document.getElementById('animated-logo');
+    const transitionOverlay = document.querySelector('.transition-overlay');
+    const path = document.querySelector('.line');
+    
+    // Path más curvo y elaborado
+    path.setAttribute('d', `
+        M5,5
+        C20,30 40,20 50,50
+        S80,30 95,95
+    `);
+    
+    startButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Iniciar animación
+        body.classList.add('animation-active');
+        
+        // Configuración de la animación
+        const duration = 4000; // Aumentado a 4 segundos
+        const startTime = performance.now();
+        
+        // Función de animación suavizada
+        function animateLogo(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Animación del trazado de la línea
+            path.style.strokeDashoffset = 2000 * (1 - progress);
+            
+            // Movimiento del logo
+            const pathLength = path.getTotalLength();
+            const point = path.getPointAtLength(progress * pathLength);
+            
+            // Aplicamos transformación con suavizado
+            animatedLogo.style.transform = `
+                translate(${point.x}vw, ${point.y}vh)
+                scale(${1 - progress * 0.5}) /* Efecto de reducción gradual */
+            `;
+            
+            // Opacidad gradual al final
+            if (progress > 0.7) {
+                animatedLogo.style.opacity = 1 - (progress - 0.7) / 0.3;
+            }
+            
+            if (progress < 1) {
+                requestAnimationFrame(animateLogo);
+            } else {
+                // Transición final más suave
+                setTimeout(() => {
+                    transitionOverlay.style.opacity = '1';
+                    setTimeout(() => {
+                        window.location.href = 'biografia.html';
+                    }, 1500); // Más tiempo para el fade final
+                }, 500);
+            }
+        }
+        
+        requestAnimationFrame(animateLogo);
+    });
+});
