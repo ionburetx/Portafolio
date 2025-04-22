@@ -1,0 +1,149 @@
+.contacto-contenido {
+    width: 100%;
+    max-width: 1200px; /* Añade un máximo para no estirarse demasiado */
+    margin: 0 auto; /* Centra el contenido */
+    padding: 0 20px; /* Espacio a los lados */
+}
+
+.contenedor-columnas {
+    display: flex; /* Activa el flexbox */
+    gap: 30px; /* Espacio entre columnas */
+    width: 100%;
+    margin-top: 3rem;
+}
+
+.cv-columna-izquierda {
+    flex: 0 0 30%; /* Ancho fijo del 30% */
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    box-sizing: border-box;
+    height: fit-content;
+}
+
+.cv-columna-derecha {
+    flex: 1; /* Ocupa el 70% restante */
+    box-sizing: border-box;
+    margin-left: -5vw;
+}
+
+h3.nombre {
+    font-size: 1.2rem;
+    margin: 0 0 10px 0;
+    opacity: 0.5;
+}
+
+/*CARDS*/
+.cv-item-header h5 {
+    font-size: 0.7rem;
+    padding: 0;
+    padding: 0;
+    text-align: left;
+}
+
+#apartadosCv {
+    margin-top: 7.5vh;
+
+}
+
+#apartadosCv h4 {
+    font-size: 0.5rem;
+    margin: 0.5rem 0 0 0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#apartadosCv h4:hover {
+    color: tomato; /* Efecto hover para mejor interacción */
+}
+
+p.miBio {
+    font-size: 0.7rem;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.4;
+}
+
+.cv-item-content h6 {
+    font-size: 0.7rem;
+    color: #ffffff;
+    font-weight: normal;
+    font-style: italic;
+    margin-left: -3vw;
+    margin-top: -1.5vh;
+    padding: 0;
+    text-align: left;
+}
+
+.cv-item-content p {
+    font-size: 0.7rem;
+    font-weight: normal;
+    color: #ffffff;
+    margin-left: -3vw;
+    padding: 0;
+    text-align: left;
+}
+
+.cv-item-content li {
+    font-size: 0.7rem;
+    color: #ffffff;
+    font-weight: normal;
+    margin-left: -3vw;
+    margin-top: 1.5vh;
+    padding: 0;
+    text-align: left;
+}
+
+.cv-item {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+    padding-left: 0; /* Elimina padding izquierdo si existe */
+    margin-left: 0;
+    position: relative;
+}
+
+.cv-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.cv-item-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 10px;
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.cv-item-content.active {
+    max-height: 500px;
+    padding: 10px;
+    opacity: 1;
+    margin-top: 8px;
+}
+
+.masInfo {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.masInfo:hover {
+    background-color: #e63c17;
+}

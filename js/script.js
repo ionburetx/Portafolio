@@ -147,3 +147,38 @@ function isInViewport(element) {
       rect.bottom >= 0
     );
 }
+
+// ================
+//BOTÓN + INFO CV
+//=================
+function setupAccordions() {
+    const buttons = document.querySelectorAll('.masInfo');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const itemHeader = this.parentElement;
+            const itemContent = itemHeader.nextElementSibling;
+            
+            // Cerrar otros acordeones abiertos si es necesario
+            document.querySelectorAll('.cv-item-content.active').forEach(content => {
+                if (content !== itemContent) {
+                    content.classList.remove('active');
+                    content.previousElementSibling.querySelector('.masInfo').textContent = '+';
+                }
+            });
+            
+            // Alternar el acordeón actual
+            itemContent.classList.toggle('active');
+            
+            // Cambiar el ícono
+            this.textContent = itemContent.classList.contains('active') ? '-' : '+';
+        });
+    });
+}
+
+// Ejecutar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupAccordions);
+} else {
+    setupAccordions();
+}
