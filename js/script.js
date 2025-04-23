@@ -431,3 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Iniciar
     initCarousel();
 });
+
+// ==========================
+//ANIMACIÓN ENTRADA ELEMENTOS  
+// ==========================
