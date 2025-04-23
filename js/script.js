@@ -339,3 +339,95 @@ document.addEventListener('DOMContentLoaded', function() {
         requestAnimationFrame(animateLogo);
     });
 });
+
+// ======================
+//CARRUSEL ILUSTRACIONES   
+// ====================== 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const carrusel = document.querySelector('.carrusel');
+    const imagen = document.querySelector('.carrusel-img1');
+    let isDragging = false;
+    let startX, currentX;
+    let animationId;
+    const duration = 40000; // 30 segundos (ajustable)
+    
+    function initCarousel() {
+        if (!imagen.complete) {
+            imagen.addEventListener('load', initCarousel);
+            return;
+        }
+        
+        const containerWidth = carrusel.offsetWidth;
+        const imgWidth = imagen.offsetWidth;
+        
+        // Posición inicial: borde izquierdo en mitad de pantalla
+        currentX = containerWidth * 0.3;
+        applyTransform();
+        
+        // Calcular desplazamiento necesario
+        const desplazamientoNecesario = imgWidth - (containerWidth * 0.7);
+        
+        function animate(startTime) {
+            function runAnimation(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing suave
+                const easing = progress < 0.5 
+                    ? 2 * progress * progress 
+                    : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+                
+                // Mover desde mitad de pantalla hasta borde derecho
+                currentX = (containerWidth * 0.25) - (easing * desplazamientoNecesario);
+                applyTransform();
+                
+                if (progress < 1 && !isDragging) {
+                    animationId = requestAnimationFrame(runAnimation);
+                }
+            }
+            
+            animationId = requestAnimationFrame(runAnimation);
+        }
+        
+        // Iniciar animación
+        animate();
+        
+        // Eventos táctiles
+        carrusel.addEventListener('touchstart', (e) => {
+            cancelAnimationFrame(animationId);
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            currentX = parseInt(getComputedStyle(imagen).left) || (containerWidth / 2);
+            e.preventDefault();
+        });
+        
+        carrusel.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            const x = e.touches[0].clientX;
+            const diff = x - startX;
+            currentX = currentX + diff;
+            
+            // Limitar el desplazamiento
+            const maxX = containerWidth / 2; // No pasar de la posición inicial
+            const minX = (containerWidth / 2) - (imgWidth - (containerWidth / 2)); // Hasta borde derecho
+            currentX = Math.max(minX, Math.min(currentX, maxX));
+            
+            applyTransform();
+        });
+        
+        carrusel.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+    }
+    
+    function applyTransform() {
+        imagen.style.left = `${currentX}px`;
+    }
+    
+    // Iniciar
+    initCarousel();
+});
