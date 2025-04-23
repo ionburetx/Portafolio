@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let isDragging = false;
     let startX, currentX;
     let animationId;
-    const duration = 30000; // 30 segundos (ajustable)
+    const duration = 40000; // 30 segundos (ajustable)
     
     function initCarousel() {
         if (!imagen.complete) {
@@ -294,11 +294,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const imgWidth = imagen.offsetWidth;
         
         // Posición inicial: borde izquierdo en mitad de pantalla
-        currentX = containerWidth / 2;
+        currentX = containerWidth * 0.3;
         applyTransform();
         
         // Calcular desplazamiento necesario
-        const desplazamientoNecesario = imgWidth - (containerWidth / 2);
+        const desplazamientoNecesario = imgWidth - (containerWidth * 0.7);
         
         function animate(startTime) {
             function runAnimation(timestamp) {
@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     : 1 - Math.pow(-2 * progress + 2, 2) / 2;
                 
                 // Mover desde mitad de pantalla hasta borde derecho
-                currentX = (containerWidth / 2) - (easing * desplazamientoNecesario);
+                currentX = (containerWidth * 0.25) - (easing * desplazamientoNecesario);
                 applyTransform();
                 
                 if (progress < 1 && !isDragging) {
