@@ -273,67 +273,93 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ======================
-//CARRUSEL ILUSTRACIONES
-//=======================
+//CARRUSEL ILUSTRACIONES   
+// ====================== 
+
 document.addEventListener('DOMContentLoaded', function() {
     const carrusel = document.querySelector('.carrusel');
-    const img = carrusel.querySelector('img');
-    const container = document.querySelector('.ilustraciones-container');
-    let animationId;
-    let startTime;
-    const duration = 15000; // 15 segundos
-    
-    // Función para el desplazamiento automático (de derecha a izquierda)
-    function autoScroll(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const progress = timestamp - startTime;
-        const porcentaje = Math.min(progress / duration, 1);
-        
-        const maxScroll = img.width + container.offsetWidth; // Añadimos el ancho del viewport
-        const desplazamientoInicial = container.offsetWidth; // Comenzamos desde la derecha
-        const desplazamientoFinal = img.width - container.offsetWidth;
-        const desplazamiento = desplazamientoInicial - (porcentaje * (desplazamientoInicial + desplazamientoFinal));
-        
-        carrusel.style.transform = `translateX(${desplazamiento}px)`;
-        
-        if (porcentaje < 1) {
-            animationId = requestAnimationFrame(autoScroll);
-        }
-    }
-    
-    // Iniciar animación
-    function startAnimation() {
-        startTime = null;
-        animationId = requestAnimationFrame(autoScroll);
-    }
-    
-    // Control táctil
+    const imagen = document.querySelector('.carrusel-img1');
     let isDragging = false;
-    let startX, startTransform;
+    let startX, currentX;
+    let animationId;
+    const duration = 30000; // 30 segundos (ajustable)
     
-    carrusel.addEventListener('touchstart', (e) => {
-        cancelAnimationFrame(animationId);
-        isDragging = true;
-        startX = e.touches[0].clientX;
-        startTransform = parseInt(carrusel.style.transform.split('translateX(')[1].split('px)')[0]) || container.offsetWidth;
-    });
-    
-    carrusel.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.touches[0].clientX;
-        const walk = (x - startX) * 2;
-        const newTransform = startTransform + walk;
-        const maxTransform = container.offsetWidth;
-        const minTransform = -(img.width - container.offsetWidth);
+    function initCarousel() {
+        if (!imagen.complete) {
+            imagen.addEventListener('load', initCarousel);
+            return;
+        }
         
-        carrusel.style.transform = `translateX(${Math.min(Math.max(minTransform, newTransform), maxTransform)}px)`;
-    });
+        const containerWidth = carrusel.offsetWidth;
+        const imgWidth = imagen.offsetWidth;
+        
+        // Posición inicial: borde izquierdo en mitad de pantalla
+        currentX = containerWidth / 2;
+        applyTransform();
+        
+        // Calcular desplazamiento necesario
+        const desplazamientoNecesario = imgWidth - (containerWidth / 2);
+        
+        function animate(startTime) {
+            function runAnimation(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing suave
+                const easing = progress < 0.5 
+                    ? 2 * progress * progress 
+                    : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+                
+                // Mover desde mitad de pantalla hasta borde derecho
+                currentX = (containerWidth / 2) - (easing * desplazamientoNecesario);
+                applyTransform();
+                
+                if (progress < 1 && !isDragging) {
+                    animationId = requestAnimationFrame(runAnimation);
+                }
+            }
+            
+            animationId = requestAnimationFrame(runAnimation);
+        }
+        
+        // Iniciar animación
+        animate();
+        
+        // Eventos táctiles
+        carrusel.addEventListener('touchstart', (e) => {
+            cancelAnimationFrame(animationId);
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            currentX = parseInt(getComputedStyle(imagen).left) || (containerWidth / 2);
+            e.preventDefault();
+        });
+        
+        carrusel.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            const x = e.touches[0].clientX;
+            const diff = x - startX;
+            currentX = currentX + diff;
+            
+            // Limitar el desplazamiento
+            const maxX = containerWidth / 2; // No pasar de la posición inicial
+            const minX = (containerWidth / 2) - (imgWidth - (containerWidth / 2)); // Hasta borde derecho
+            currentX = Math.max(minX, Math.min(currentX, maxX));
+            
+            applyTransform();
+        });
+        
+        carrusel.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+    }
     
-    carrusel.addEventListener('touchend', () => {
-        isDragging = false;
-    });
+    function applyTransform() {
+        imagen.style.left = `${currentX}px`;
+    }
     
-    // Iniciar animación con retraso para que se vea el efecto
-    setTimeout(startAnimation, 500);
+    // Iniciar
+    initCarousel();
 });
