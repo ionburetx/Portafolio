@@ -1,0 +1,47 @@
+h3.titulo-trabajos {
+    font-size: 1.5rem; /* Tamaño del texto */
+    color: #ffffff; /* Color del texto */
+    opacity: 0.8; /* Opacidad del texto */
+    margin-top: -5vh;;
+}
+
+.ilustraciones-container {
+    position: relative; /* Contenedor relativo para posicionamiento absoluto interno */
+    width: 100%;
+    overflow: hidden; /* Para que no se vea el contenido que sobresale */
+    margin-top: 20px 0; /* Ajusta según necesites */
+    touch-action: pan-y;
+}
+
+.titulo-trabajos {
+    position: absolute;
+    z-index: 1; /* Capa inferior */
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem; /* Tamaño grande para que sea visible detrás */
+    color: rgba(0, 0, 0, 0.2); /* Color semitransparente */
+    pointer-events: none;
+    margin: 0;
+}
+
+.carrusel {
+    position: relative;
+    z-index: 2; /* Capa superior */
+    display: flex;
+    transform: translateX(100vw);
+    transition: transform 0.3s ease-out;
+    width: max-content; /* Ajusta según el ancho de tu imagen */
+}
+
+.carrusel img {
+    height: 300px; /* Ajusta según tus necesidades */
+    object-fit: contain;
+    display: block;
+}
+
+@keyframes auto-desplazamiento {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-100% + 100vw)); }
+}

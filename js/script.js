@@ -271,3 +271,69 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setTimeout(checkInitialPosition, 100);
 });
+
+// ======================
+//CARRUSEL ILUSTRACIONES
+//=======================
+document.addEventListener('DOMContentLoaded', function() {
+    const carrusel = document.querySelector('.carrusel');
+    const img = carrusel.querySelector('img');
+    const container = document.querySelector('.ilustraciones-container');
+    let animationId;
+    let startTime;
+    const duration = 15000; // 15 segundos
+    
+    // Función para el desplazamiento automático (de derecha a izquierda)
+    function autoScroll(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = timestamp - startTime;
+        const porcentaje = Math.min(progress / duration, 1);
+        
+        const maxScroll = img.width + container.offsetWidth; // Añadimos el ancho del viewport
+        const desplazamientoInicial = container.offsetWidth; // Comenzamos desde la derecha
+        const desplazamientoFinal = img.width - container.offsetWidth;
+        const desplazamiento = desplazamientoInicial - (porcentaje * (desplazamientoInicial + desplazamientoFinal));
+        
+        carrusel.style.transform = `translateX(${desplazamiento}px)`;
+        
+        if (porcentaje < 1) {
+            animationId = requestAnimationFrame(autoScroll);
+        }
+    }
+    
+    // Iniciar animación
+    function startAnimation() {
+        startTime = null;
+        animationId = requestAnimationFrame(autoScroll);
+    }
+    
+    // Control táctil
+    let isDragging = false;
+    let startX, startTransform;
+    
+    carrusel.addEventListener('touchstart', (e) => {
+        cancelAnimationFrame(animationId);
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startTransform = parseInt(carrusel.style.transform.split('translateX(')[1].split('px)')[0]) || container.offsetWidth;
+    });
+    
+    carrusel.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.touches[0].clientX;
+        const walk = (x - startX) * 2;
+        const newTransform = startTransform + walk;
+        const maxTransform = container.offsetWidth;
+        const minTransform = -(img.width - container.offsetWidth);
+        
+        carrusel.style.transform = `translateX(${Math.min(Math.max(minTransform, newTransform), maxTransform)}px)`;
+    });
+    
+    carrusel.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+    
+    // Iniciar animación con retraso para que se vea el efecto
+    setTimeout(startAnimation, 500);
+});
