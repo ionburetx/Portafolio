@@ -280,9 +280,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const carrusel = document.querySelector('.carrusel');
     const imagen = document.querySelector('.carrusel-img1');
     let isDragging = false;
-    let startX, currentX;
+    let startX, currentX, lastX, velocity = 0;
+    let lastTime;
     let animationId;
-    const duration = 40000; // 30 segundos (ajustable)
+    const duration = 40000; // 40 segundos para la animación automática
+    const friction = 0.95; // Fricción para el deslizamiento inercial
+    const minVelocity = 0.1; // Velocidad mínima para continuar el movimiento
     
     function initCarousel() {
         if (!imagen.complete) {
@@ -293,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const containerWidth = carrusel.offsetWidth;
         const imgWidth = imagen.offsetWidth;
         
-        // Posición inicial: borde izquierdo en mitad de pantalla
+        // Posición inicial: borde izquierdo en 30% del contenedor
         currentX = containerWidth * 0.3;
         applyTransform();
         
@@ -311,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ? 2 * progress * progress 
                     : 1 - Math.pow(-2 * progress + 2, 2) / 2;
                 
-                // Mover desde mitad de pantalla hasta borde derecho
+                // Mover desde posición inicial hasta borde derecho
                 currentX = (containerWidth * 0.3) - (easing * desplazamientoNecesario);
                 applyTransform();
                 
@@ -323,15 +326,14 @@ document.addEventListener('DOMContentLoaded', function() {
             animationId = requestAnimationFrame(runAnimation);
         }
         
-        // Iniciar animación
-        animate();
-        
-        // Eventos táctiles
+        // Eventos táctiles mejorados
         carrusel.addEventListener('touchstart', (e) => {
             cancelAnimationFrame(animationId);
             isDragging = true;
             startX = e.touches[0].clientX;
-            currentX = parseInt(getComputedStyle(imagen).left) || (containerWidth / 2);
+            lastX = currentX;
+            lastTime = performance.now();
+            velocity = 0;
             e.preventDefault();
         });
         
@@ -340,26 +342,75 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             const x = e.touches[0].clientX;
-            const diff = x - startX;
-            currentX = currentX + diff;
+            const now = performance.now();
+            const deltaTime = now - lastTime;
             
-            // Limitar el desplazamiento
-            const maxX = containerWidth / 2; // No pasar de la posición inicial
-            const minX = (containerWidth / 2) - (imgWidth - (containerWidth / 2)); // Hasta borde derecho
-            currentX = Math.max(minX, Math.min(currentX, maxX));
-            
-            applyTransform();
+            if (deltaTime > 0) {
+                const deltaX = x - startX;
+                currentX = lastX + deltaX;
+                
+                // Calcular velocidad para el efecto inercial
+                velocity = (currentX - lastX) / deltaTime;
+                lastX = currentX;
+                lastTime = now;
+                
+                // Limitar el desplazamiento
+                const maxX = containerWidth * 0.3;
+                const minX = maxX - (imgWidth - containerWidth * 0.7);
+                currentX = Math.max(minX, Math.min(currentX, maxX));
+                
+                applyTransform();
+            }
         });
         
         carrusel.addEventListener('touchend', () => {
             isDragging = false;
+            
+            // Aplicar efecto inercial si hay suficiente velocidad
+            if (Math.abs(velocity) > minVelocity) {
+                const inertiaAnimation = () => {
+                    velocity *= friction; // Reducir velocidad por fricción
+                    currentX += velocity * 16; // 16ms ≈ 60fps
+                    
+                    // Limitar movimiento dentro de los bordes
+                    const maxX = containerWidth * 0.3;
+                    const minX = maxX - (imgWidth - containerWidth * 0.7);
+                    
+                    if (currentX > maxX) {
+                        currentX = maxX;
+                        velocity = 0;
+                    } else if (currentX < minX) {
+                        currentX = minX;
+                        velocity = 0;
+                    }
+                    
+                    applyTransform();
+                    
+                    // Continuar animación si aún hay velocidad
+                    if (Math.abs(velocity) > minVelocity) {
+                        requestAnimationFrame(inertiaAnimation);
+                    } else {
+                        // Reiniciar animación automática después de detenerse
+                        animate();
+                    }
+                };
+                
+                inertiaAnimation();
+            } else {
+                // Reiniciar animación automática si no hay movimiento inercial
+                animate();
+            }
         });
+        
+        // Iniciar animación automática
+        animate();
     }
     
     function applyTransform() {
-        imagen.style.left = `${currentX}px`;
+        // Usamos transform en lugar de left para mejor rendimiento
+        imagen.style.transform = `translateX(${currentX}px)`;
     }
     
-    // Iniciar
+    // Iniciar el carrusel
     initCarousel();
 });

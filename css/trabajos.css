@@ -8,6 +8,10 @@
 .section-content {
     position: relative;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
 }
 
 .tit-seccion {
@@ -20,7 +24,7 @@
     font-size: 1.5em;
     color: #ffffff;
     opacity: 0.5;
-    margin: 2vh 0 0 3vh;
+    margin: 0.5vh 0 0 3vh;
 }
 
 .ilustraciones-container {
@@ -34,6 +38,7 @@
     width: 100%;
     height: 300px; /* Ajusta según necesites */
     overflow: hidden;
+    touch-action: pan-y;
 }
 
 .carrusel-img1 {
@@ -41,8 +46,8 @@
     height: 100%;
     width: auto;
     object-fit: contain;
-    left: 50%;
-    transition: translateX (-50%);
+    will-change: transform;
+    transition: transform 0.1s ease-out;
 }
 
 
