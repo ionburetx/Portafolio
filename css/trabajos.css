@@ -50,5 +50,83 @@
     transition: transform 0.1s ease-out;
 }
 
+/*Cards fotografía*/
+.boton-fotografia-container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.boton-fotografia {
+    display: block;
+    width: 100%;
+    max-width: 300px; /* Ancho máximo para no hacerlo muy grande en desktop */
+    aspect-ratio: 1/1; /* Formato cuadrado */
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px; /* Espacio después de la imagen de Fotografía */
+}
+
+.boton-imagen-fondo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.boton-capa-oscura {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease;
+}
+
+.boton-texto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    width: 90%;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+}
+
+.boton-fotografia:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.boton-fotografia:hover .boton-capa-oscura {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .boton-fotografia {
+        max-width: 45%; /* Para mostrar 2 botones por fila en móvil */
+        margin: 20px auto 0; /* Centrado en móvil */
+    }
+    
+    .boton-texto {
+        font-size: 1rem; /* Tamaño más pequeño en móvil */
+    }
+}
+
 
 
