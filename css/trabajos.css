@@ -10,17 +10,23 @@
     width: 100%;
 }
 
+.tit-seccion {
+    width: 50%;
+    margin: 5vh auto 0 auto;
+    display: block;
+}
+
 .titulo-trabajos {
     font-size: 1.5em;
     color: #ffffff;
     opacity: 0.5;
-    margin: 5vh 0 5vh 3vh;
+    margin: 2vh 0 0 3vh;
 }
 
 .ilustraciones-container {
     position: relative;
     width: 100%;
-    margin-bottom: 5vh;
+    margin-bottom: 1vh;
 }
 
 .carrusel {

@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     : 1 - Math.pow(-2 * progress + 2, 2) / 2;
                 
                 // Mover desde mitad de pantalla hasta borde derecho
-                currentX = (containerWidth * 0.25) - (easing * desplazamientoNecesario);
+                currentX = (containerWidth * 0.3) - (easing * desplazamientoNecesario);
                 applyTransform();
                 
                 if (progress < 1 && !isDragging) {
