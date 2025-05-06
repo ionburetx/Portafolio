@@ -1,64 +1,65 @@
+/* Mantener el contenedor centrado */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 15px;
+}
+
 /* galeria-fotografia.css */
 .titulo-categoria {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin-top: 10vh;
+    margin-bottom: 3vh;
     text-align: center;
-    margin: 20px 0;
-    font-size: 2em;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+}
+
+.galeria-contenedor {
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
 .galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    gap: 15px; /* Espacio entre columnas */
+}
+
+.galeria-columna {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre imágenes dentro de la columna */
 }
 
 .galeria-item {
-    margin: 0;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: #fff;
+    width: 100%;
 }
 
-.galeria-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+.galeria-item:last-child {
+    margin-bottom: 0; /* Elimina el margen del último elemento */
 }
 
 .galeria-item img {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: auto;
     display: block;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeria-item img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .galeria-item figcaption {
-    padding: 15px;
+    padding: 10px 0;
+    font-size: 0.8em;
+    color: #555;
     text-align: center;
-    font-size: 0.9em;
-    color: #666;
-}
-
-.sin-imagenes, .error-carga {
-    text-align: center;
-    grid-column: 1 / -1;
-    padding: 40px;
-    font-size: 1.2em;
-    color: #666;
-}
-
-@media (max-width: 768px) {
-    .galeria {
-        grid-template-columns: 1fr;
-    }
-    
-    .titulo-categoria {
-        font-size: 1.5em;
-    }
 }

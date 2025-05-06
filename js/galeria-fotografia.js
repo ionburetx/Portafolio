@@ -1,51 +1,58 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Obtener la categoría de la URL
     const urlParams = new URLSearchParams(window.location.search);
-    const categoriaSeleccionada = urlParams.get('categoria');
+    const categoriaSeleccionada = urlParams.get('categoria') || 'arquitectura';
+    const galeria = document.getElementById('contenedorGaleria');
     
-    // Cargar datos del JSON
-    fetch('data/galeria.json')
+    console.log('Categoría seleccionada:', categoriaSeleccionada); // Debug
+    
+    galeria.innerHTML = '<p class="sin-imagenes">Cargando galería...</p>';
+
+    fetch('data/galeria-fotografia.json')
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al cargar el archivo JSON');
-            }
+            if (!response.ok) throw new Error(`Error HTTP! estado: ${response.status}`);
             return response.json();
         })
         .then(data => {
-            // Verificar si existe la categoría seleccionada
-            const categoriaEncontrada = data.categorias.find(
-                cat => cat.nombre === categoriaSeleccionada
-            );
+            console.log('Datos JSON cargados:', data); // Debug
             
-            if (!categoriaEncontrada) {
-                console.error('Categoría no encontrada:', categoriaSeleccionada);
-                // Redirigir a una categoría por defecto o mostrar mensaje
-                window.location.href = 'galeria-fotografia.html?categoria=arquitectura';
+            const categoria = data.categorias.find(c => c.nombre === categoriaSeleccionada);
+            
+            if (!categoria) {
+                console.error('Categorías disponibles:', data.categorias.map(c => c.nombre));
+                throw new Error(`Categoría "${categoriaSeleccionada}" no encontrada`);
+            }
+
+            console.log('Categoría encontrada:', categoria); // Debug
+            
+            document.title = `ION BURETX - ${categoria.titulo}`;
+            document.getElementById('tituloCategoria').textContent = categoria.titulo;
+            
+            if (categoria.imagenes.length === 0) {
+                galeria.innerHTML = '<p class="sin-imagenes">Próximamente más imágenes</p>';
                 return;
             }
+
+            galeria.innerHTML = `
+                <div class="galeria-columna" id="columna1"></div>
+                <div class="galeria-columna" id="columna2"></div>
+            `;
             
-            // Mostrar título específico de la categoría
-            document.title = `ION BURETX - ${categoriaEncontrada.titulo}`;
-            document.getElementById('tituloCategoria').textContent = categoriaEncontrada.titulo;
+            const columna1 = document.getElementById('columna1');
+            const columna2 = document.getElementById('columna2');
             
-            // Cargar imágenes
-            const galeria = document.getElementById('contenedorGaleria');
-            galeria.innerHTML = ''; // Limpiar contenedor
-            
-            if (categoriaEncontrada.imagenes.length === 0) {
-                galeria.innerHTML = '<p class="sin-imagenes">Próximamente más imágenes en esta categoría</p>';
-                return;
-            }
-            
-            categoriaEncontrada.imagenes.forEach(img => {
+            categoria.imagenes.forEach((img, index) => {
+                const imgElement = new Image();
+                imgElement.onload = () => console.log('Imagen cargada:', img.src); // Debug
+                imgElement.onerror = () => {
+                    console.error('Error cargando imagen:', img.src);
+                    imgElement.src = 'imagenes/placeholder.jpg';
+                };
+                imgElement.src = img.src;
+                imgElement.alt = img.alt || `Foto de ${categoria.titulo}`;
+                imgElement.loading = "lazy";
+
                 const figure = document.createElement('figure');
                 figure.className = 'galeria-item';
-                
-                const imgElement = document.createElement('img');
-                imgElement.src = img.src;
-                imgElement.alt = img.alt || `Foto de ${categoriaEncontrada.titulo}`;
-                imgElement.loading = "lazy";
-                
                 figure.appendChild(imgElement);
                 
                 if (img.descripcion) {
@@ -54,12 +61,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     figure.appendChild(figcaption);
                 }
                 
-                galeria.appendChild(figure);
+                (index % 2 === 0 ? columna1 : columna2).appendChild(figure);
             });
         })
         .catch(error => {
-            console.error('Error cargando la galería:', error);
-            document.getElementById('contenedorGaleria').innerHTML = 
-                '<p class="error-carga">Error al cargar la galería. Por favor, inténtalo más tarde.</p>';
+            console.error('Error completo:', error);
+            galeria.innerHTML = `
+                <p class="error-carga">
+                    Error al cargar la galería. 
+                    <br>Detalle: ${error.message}
+                    <br><a href="galeria-fotografia.html?categoria=retrato">Volver a intentar</a>
+                </p>`;
         });
 });

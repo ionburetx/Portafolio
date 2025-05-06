@@ -1,0 +1,336 @@
+{
+    "categorias": [
+        {
+            "nombre": "arquitectura",
+            "titulo": "Arquitectura",
+            "imagenes": [
+                {
+                    "src": "imagenes/fotografia/fot-arq/1.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/2.jpg",
+                    "alt": "Interior de biblioteca"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/3.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/4.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/5.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/6.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/7.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/8.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/9.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/10.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/11.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/12.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/13.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/14.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/15.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/16.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/17.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/18.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/19.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/20.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/21.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/22.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/23.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-arq/24.jpg",
+                    "alt": "Edificio moderno en Barcelona"
+                }
+            ]
+        },
+        {
+            "nombre": "paisaje",
+            "titulo": "Paisaje",
+            "imagenes": [
+                {
+                    "src": "imagenes/trabajos/fotografia/paisaje/pai1.jpg",
+                    "alt": "Atardecer en la montaña"
+                }
+            ]
+        },
+        {
+            "nombre": "retrato",
+            "titulo": "Retrato",
+            "imagenes": [
+                {
+                    "src": "imagenes/fotografia/fot-ret/1.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/2.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/3.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/4.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/5.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/6.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/7.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/8.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/9.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/10.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/11.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/12.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/13.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/14.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/15.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/16.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/17.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/18.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/19.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/20.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/21.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/22.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/23.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/24.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/25.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/26.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/27.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/28.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/29.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/30.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/31.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/32.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/33.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/34.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/35.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/36.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/37.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/38.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/39.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/40.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/41.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/42.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/43.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/44.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/45.jpg",
+                    "alt": "Retrato en estudio"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ret/46.jpg",
+                    "alt": "Retrato en estudio"
+                }
+            ]
+        },
+        {
+            "nombre": "calle",
+            "titulo": "Calle",
+            "imagenes": [
+                {
+                    "src": "imagenes/trabajos/fotografia/calle/cal1.jpg",
+                    "alt": "Escena callejera"
+                }
+            ]
+        },
+        {
+            "nombre": "animales",
+            "titulo": "Animales",
+            "imagenes": [
+                {
+                    "src": "imagenes/trabajos/fotografia/animales/ani1.jpg",
+                    "alt": "Ave en vuelo"
+                }
+            ]
+        },
+        {
+            "nombre": "estilo-de-vida",
+            "titulo": "Estilo de vida",
+            "imagenes": [
+                {
+                    "src": "imagenes/trabajos/fotografia/estilo-de-vida/est1.jpg",
+                    "alt": "Café de la mañana"
+                }
+            ]
+        }
+    ]
+}
