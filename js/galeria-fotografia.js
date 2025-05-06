@@ -6,7 +6,7 @@ const categoria = urlParams.get('categoria') || 'arquitectura'; // Valor por def
 document.getElementById('tituloCategoria').textContent = 
     `Galería de ${categoria.charAt(0).toUpperCase() + categoria.slice(1)}`;
 
-// Objeto con las imágenes de cada categoría (ajusta esto con tus propias imágenes)
+// Objeto con las imágenes de cada categoría
 const imagenesPorCategoria = {
     arquitectura: [
         "imagenes/trabajos/fotografia/arquitectura/arq1.jpg",
@@ -21,9 +21,11 @@ const imagenesPorCategoria = {
     // Añade más categorías aquí...
 };
 
-// Cargar las imágenes correspondientes
+// Cargar las imágenes correspondientes (versión mobile first - una columna)
 const galeria = document.getElementById('contenedorGaleria');
-imagenesPorCategoria[categoria].forEach(imgSrc => {
+const imagenes = imagenesPorCategoria[categoria];
+
+imagenes.forEach(imgSrc => {
     const img = document.createElement('img');
     img.src = imgSrc;
     img.alt = `Foto de ${categoria}`;

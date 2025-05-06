@@ -1,19 +1,28 @@
+/* Estilos base (mobile first) */
 .galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
 }
+
 .galeria img {
     width: 100%;
     height: auto;
-    transition: transform 0.3s;
+    display: block;
+    margin-bottom: 16px;
+    transition: transform 0.3s ease;
 }
+
+.galeria img:last-child {
+    margin-bottom: 0;
+}
+
 .galeria img:hover {
     transform: scale(1.02);
 }
+
 .titulo-categoria {
     text-align: center;
-    margin: 20px 0;
-    font-size: 2em;
+    margin: 16px 0;
+    font-size: 1.5em;
 }
