@@ -1,33 +1,65 @@
-// Obtener la categoría de la URL
-const urlParams = new URLSearchParams(window.location.search);
-const categoria = urlParams.get('categoria') || 'arquitectura'; // Valor por defecto
-
-// Mostrar el título de la categoría
-document.getElementById('tituloCategoria').textContent = 
-    `Galería de ${categoria.charAt(0).toUpperCase() + categoria.slice(1)}`;
-
-// Objeto con las imágenes de cada categoría
-const imagenesPorCategoria = {
-    arquitectura: [
-        "imagenes/trabajos/fotografia/arquitectura/arq1.jpg",
-        "imagenes/trabajos/fotografia/arquitectura/arq2.jpg",
-        // Más imágenes...
-    ],
-    paisaje: [
-        "imagenes/trabajos/fotografia/paisaje/pai1.jpg",
-        "imagenes/trabajos/fotografia/paisaje/pai2.jpg",
-        // Más imágenes...
-    ],
-    // Añade más categorías aquí...
-};
-
-// Cargar las imágenes correspondientes (versión mobile first - una columna)
-const galeria = document.getElementById('contenedorGaleria');
-const imagenes = imagenesPorCategoria[categoria];
-
-imagenes.forEach(imgSrc => {
-    const img = document.createElement('img');
-    img.src = imgSrc;
-    img.alt = `Foto de ${categoria}`;
-    galeria.appendChild(img);
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener la categoría de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoriaSeleccionada = urlParams.get('categoria');
+    
+    // Cargar datos del JSON
+    fetch('data/galeria.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al cargar el archivo JSON');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Verificar si existe la categoría seleccionada
+            const categoriaEncontrada = data.categorias.find(
+                cat => cat.nombre === categoriaSeleccionada
+            );
+            
+            if (!categoriaEncontrada) {
+                console.error('Categoría no encontrada:', categoriaSeleccionada);
+                // Redirigir a una categoría por defecto o mostrar mensaje
+                window.location.href = 'galeria-fotografia.html?categoria=arquitectura';
+                return;
+            }
+            
+            // Mostrar título específico de la categoría
+            document.title = `ION BURETX - ${categoriaEncontrada.titulo}`;
+            document.getElementById('tituloCategoria').textContent = categoriaEncontrada.titulo;
+            
+            // Cargar imágenes
+            const galeria = document.getElementById('contenedorGaleria');
+            galeria.innerHTML = ''; // Limpiar contenedor
+            
+            if (categoriaEncontrada.imagenes.length === 0) {
+                galeria.innerHTML = '<p class="sin-imagenes">Próximamente más imágenes en esta categoría</p>';
+                return;
+            }
+            
+            categoriaEncontrada.imagenes.forEach(img => {
+                const figure = document.createElement('figure');
+                figure.className = 'galeria-item';
+                
+                const imgElement = document.createElement('img');
+                imgElement.src = img.src;
+                imgElement.alt = img.alt || `Foto de ${categoriaEncontrada.titulo}`;
+                imgElement.loading = "lazy";
+                
+                figure.appendChild(imgElement);
+                
+                if (img.descripcion) {
+                    const figcaption = document.createElement('figcaption');
+                    figcaption.textContent = img.descripcion;
+                    figure.appendChild(figcaption);
+                }
+                
+                galeria.appendChild(figure);
+            });
+        })
+        .catch(error => {
+            console.error('Error cargando la galería:', error);
+            document.getElementById('contenedorGaleria').innerHTML = 
+                '<p class="error-carga">Error al cargar la galería. Por favor, inténtalo más tarde.</p>';
+        });
 });
