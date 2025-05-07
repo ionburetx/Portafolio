@@ -317,9 +317,126 @@
             "titulo": "Animales",
             "imagenes": [
                 {
-                    "src": "imagenes/trabajos/fotografia/animales/ani1.jpg",
+                    "src": "imagenes/fotografia/fot-ani/1.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/2.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/3.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/4.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/5.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/6.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/7.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/8.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/9.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/10.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/11.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/12.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/13.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/14.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/15.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/16.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/17.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/18.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/19.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/20.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/21.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/22.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/23.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/24.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/25.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/26.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/27.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/28.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/29.jpg",
+                    "alt": "Ave en vuelo"
+                },
+                {
+                    "src": "imagenes/fotografia/fot-ani/30.jpg",
                     "alt": "Ave en vuelo"
                 }
+
             ]
         },
         {

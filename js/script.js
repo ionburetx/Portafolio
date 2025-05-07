@@ -12,48 +12,36 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Transición de página de idioma a bienvenida
-document.addEventListener('DOMContentLoaded', function() {
-    try {
-        var botones = document.querySelectorAll('.language-btn');
-        var overlay = document.querySelector('.transition-overlay');
-        
-        botones.forEach(function(boton) {
-            boton.addEventListener('click', function() {
-                if (overlay) {
-                    overlay.style.opacity = '1';
-                }
-                
-                setTimeout(function() {
-                    window.location.href = 'bienvenida.html';
-                }, 1000);
+function initLanguageSelector() {
+    const languageButtons = document.querySelectorAll('.language-btn');
+    const overlay = document.querySelector('.transition-overlay');
+    
+    if (languageButtons.length > 0 && overlay) {
+        languageButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                overlay.style.opacity = '1';
+                setTimeout(() => window.location.href = 'bienvenida.html', 1000);
             });
         });
-    } catch (e) {
-        console.error("Error en la transición de idioma:", e);
     }
-});
+}
 
-// Transición de página de bienvenida a biografía
-document.addEventListener('DOMContentLoaded', function() {
-    const botonAqui = document.querySelector('.boton-aqui');
+function initBioTransition() {
+    const botonAqui = document.querySelector('.link--highlight');
     const transitionOverlay = document.querySelector('.transition-overlay');
     
     if (botonAqui && transitionOverlay) {
-        botonAqui.addEventListener('click', function(e) {
-            e.preventDefault(); // Evita la navegación inmediata
-
-            // Activa la transición a negro
+        botonAqui.addEventListener('click', (e) => {
+            e.preventDefault();
             transitionOverlay.style.opacity = '1';
-            transitionOverlay.style.pointerEvents = 'all';
-
-            // Espera a que termine la transición y redirige
-            setTimeout(function() {
-                window.location.href = 'biografia.html';
-            }, 1000); // 1 segundo (igual que la duración de la transición en CSS)
+            setTimeout(() => window.location.href = 'biografia.html', 1000);
         });
-    } else {
-        console.error("No se encontró el botón (.boton-aqui) o el overlay (.transition-overlay)");
     }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initLanguageSelector(); // Solo funciona si hay elementos
+    initBioTransition();    // Solo funciona en bienvenida.html
 });
 
 // ================
@@ -62,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const menuButton = document.getElementById('menuButton');
     const menuNav = document.getElementById('menuNav');
+    if (!menuButton || !menuNav) return;
     
     // Función para alternar el menú
     function toggleMenu() {
@@ -279,6 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const carrusel = document.querySelector('.carrusel');
     const imagen = document.querySelector('.carrusel-img1');
+    if (!carrusel || !imagen) return; 
     let isDragging = false;
     let startX, currentX, lastX, velocity = 0;
     let lastTime;
@@ -413,4 +403,60 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Iniciar el carrusel
     initCarousel();
+});
+
+// ======================
+//BOTONES GALERIA FOTOS   
+// ====================== 
+
+// Guardar posición del scroll cuando se hace clic en un enlace a la galería
+document.querySelectorAll('a[href^="galeria-fotografia.html"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Guardar posición actual del scroll
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+        // Redirigir después de guardar
+        setTimeout(() => window.location.href = this.href, 50);
+    });
+});
+
+// Restaurar scroll si venimos de la galería
+document.addEventListener('DOMContentLoaded', function() {
+    if (sessionStorage.getItem('fromGallery') === 'true') {
+        const savedPosition = sessionStorage.getItem('scrollPosition');
+        if (savedPosition) {
+            setTimeout(() => {
+                window.scrollTo(0, parseInt(savedPosition));
+                // Limpiar flags
+                sessionStorage.removeItem('fromGallery');
+                sessionStorage.removeItem('scrollPosition');
+            }, 100); // Pequeño delay para asegurar la renderización
+        }
+    }
+});
+
+// ======================
+// CIERRE DE GALERÍA CON TRANSICIÓN
+// ======================
+document.addEventListener('DOMContentLoaded', function() {
+    const botonCerrar = document.getElementById('botonCerrarGaleria');
+    const transitionOverlay = document.querySelector('.transition-overlay');
+    
+    if (botonCerrar && transitionOverlay) {
+        botonCerrar.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Activar transición
+            transitionOverlay.style.opacity = '1';
+            transitionOverlay.style.pointerEvents = 'all';
+            
+            // Guardar flag para restaurar scroll
+            sessionStorage.setItem('fromGallery', 'true');
+            
+            // Redirigir después de la transición
+            setTimeout(() => {
+                window.location.href = 'biografia.html';
+            }, 1000); // 1 segundo (igual que tus otras transiciones)
+        });
+    }
 });

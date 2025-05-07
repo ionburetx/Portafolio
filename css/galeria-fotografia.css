@@ -63,3 +63,49 @@ main {
     color: #555;
     text-align: center;
 }
+
+.contenedor-titulo {
+    position: relative; /* Permite posicionar el botón de forma absoluta */
+    width: 100%;
+    max-width: 1200px; /* Mismo ancho que tu galería */
+    margin: 10vh auto 3vh; /* Conserva tus márgenes verticales */
+    padding: 0 20px; /* Ajuste de padding para el botón */
+    box-sizing: border-box;
+}
+
+.titulo-categoria {
+    text-align: center; /* Centra el texto del h1 */
+    margin: 0; /* Elimina márgenes por defecto */
+    width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.boton-cerrar {
+    position: absolute; /* Posiciona el botón respecto al contenedor */
+    right: 20px; /* Lo coloca en el extremo derecho */
+    top: 50%; /* Alinea verticalmente */
+    transform: translateY(-50%); /* Centra exactamente en la mitad */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ffffff;
+    padding: 5px;
+    transition: transform 0.3s;
+}
+
+.boton-cerrar:hover {
+    transform: translateY(-50%) scale(1.1); /* Efecto hover + mantiene centrado */
+}
+
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 1s ease-in-out;
+}

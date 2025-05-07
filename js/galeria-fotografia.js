@@ -74,3 +74,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 </p>`;
         });
 });
+
+// Transición de entrada al cargar la galería
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.querySelector('.transition-overlay');
+    if (overlay) {
+        overlay.style.opacity = '0'; // Asegura que empiece transparente
+    }
+});
+
+// Cierre con transición (solo en galería-fotografia.js)
+document.addEventListener('DOMContentLoaded', function() {
+    const botonCerrar = document.getElementById('botonCerrarGaleria');
+    const transitionOverlay = document.querySelector('.transition-overlay');
+    
+    if (botonCerrar && transitionOverlay) {
+        botonCerrar.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Activar transición
+            transitionOverlay.style.opacity = '1';
+            transitionOverlay.style.pointerEvents = 'all';
+            
+            // Guardar flag y posición
+            sessionStorage.setItem('fromGallery', 'true');
+            
+            // Redirigir después de la transición
+            setTimeout(() => {
+                window.location.href = 'biografia.html';
+            }, 1000);
+        });
+    }
+});
