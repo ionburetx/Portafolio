@@ -51,7 +51,13 @@
         <main>
             <div class="transition-overlay"></div>
             <div class="contenedor-titulo"> <!-- Nuevo contenedor -->
+                <button class="boton-flecha" id="botonAnterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
                 <h1 class="titulo-categoria" id="tituloCategoria">Galería de Fotografía</h1>
+                <button class="boton-flecha" id="botonSiguiente">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
                 <button class="boton-cerrar" id="botonCerrarGaleria">
                     <i class="fas fa-times"></i>
                 </button>
@@ -70,6 +76,13 @@
                 <i class="fas fa-redo"></i>
             </a>
         </footer>
+        <!-- Modal para visualización de fotos -->
+        <div class="modal-fotos" id="modalFotos">
+            <button class="cerrar-modal" id="cerrarModal">&times;</button>
+            <div class="contenedor-modal" id="contenedorModal"></div>
+            <button class="navegacion-modal anterior" id="anteriorModal">&lt;</button>
+            <button class="navegacion-modal siguiente" id="siguienteModal">&gt;</button>
+        </div>
         <script src="js/script.js"></script>
         <script src="js/fondo.js"></script>
         <script src="js/galeria-fotografia.js"></script>

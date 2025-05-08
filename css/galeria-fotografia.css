@@ -3,7 +3,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 15px;
+    margin: 0 25px;
 }
 
 /* galeria-fotografia.css */
@@ -25,14 +25,14 @@ main {
 
 .galeria {
     display: flex;
-    gap: 15px; /* Espacio entre columnas */
+    gap: 20px; /* Espacio entre columnas */
 }
 
 .galeria-columna {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espacio entre imágenes dentro de la columna */
+    gap: 20px; /* Espacio entre imágenes dentro de la columna */
 }
 
 .galeria-item {
@@ -65,25 +65,44 @@ main {
 }
 
 .contenedor-titulo {
-    position: relative; /* Permite posicionar el botón de forma absoluta */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     width: 100%;
-    max-width: 1200px; /* Mismo ancho que tu galería */
-    margin: 10vh auto 3vh; /* Conserva tus márgenes verticales */
-    padding: 0 20px; /* Ajuste de padding para el botón */
+    max-width: 1200px;
+    margin: 10vh auto 3vh;
+    padding: 0 60px;
     box-sizing: border-box;
+    gap: 2px;
 }
 
 .titulo-categoria {
-    text-align: center; /* Centra el texto del h1 */
-    margin: 0; /* Elimina márgenes por defecto */
-    width: 100%; /* Ocupa todo el ancho disponible */
+    text-align: center;
+    margin: 0;
+    flex: 1;
+    padding: 0 5px;
+}
+
+.boton-flecha {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ffffff;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+.boton-flecha:hover {
+    transform: scale(1.2);
 }
 
 .boton-cerrar {
-    position: absolute; /* Posiciona el botón respecto al contenedor */
-    right: 20px; /* Lo coloca en el extremo derecho */
-    top: 50%; /* Alinea verticalmente */
-    transform: translateY(-50%); /* Centra exactamente en la mitad */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     background: transparent;
     border: none;
     cursor: pointer;
@@ -94,7 +113,7 @@ main {
 }
 
 .boton-cerrar:hover {
-    transform: translateY(-50%) scale(1.1); /* Efecto hover + mantiene centrado */
+    transform: translateY(-50%) scale(1.1);
 }
 
 .transition-overlay {
@@ -108,4 +127,88 @@ main {
     pointer-events: none;
     z-index: 1000;
     transition: opacity 1s ease-in-out;
+}
+
+
+/*MODAL*/
+
+/* Estilos para el modal */
+.modal-fotos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: none;
+    overflow-y: auto;
+}
+
+.modal-fotos.mostrar {
+    display: block;
+}
+
+.contenedor-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    min-height: 100vh;
+}
+
+.modal-foto {
+    max-width: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.cerrar-modal {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2001;
+}
+
+.navegacion-modal {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navegacion-modal.anterior {
+    left: 20px;
+}
+
+.navegacion-modal.siguiente {
+    right: 20px;
+}
+
+.navegacion-modal:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Ocultar scrollbar cuando el modal está abierto */
+body.modal-abierto {
+    overflow: hidden;
 }
