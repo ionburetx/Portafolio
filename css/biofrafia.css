@@ -311,12 +311,13 @@ footer {
 /* ============================================= */
 /* CARDS PARA TRABAJOS ID.COR Y DE.WEB */
 /* ============================================= */
-
+/* articulo */
 .articulo {
   display: flex;
   margin-bottom: 30px;
   position: relative;
   padding-bottom: 25px;
+  padding-left: 20px;
 }
 
 .articulo::after {
@@ -324,7 +325,7 @@ footer {
   position: absolute;
   bottom: 0;
   right: 0; /* Cambiado de left a right */
-  width: 60%; /* Ajusta este valor para el largo de la línea */
+  width: 80%; /* Ajusta este valor para el largo de la línea */
   height: 1px;
   background-color: #fff;
 }
@@ -336,6 +337,7 @@ footer {
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 4px;
+  margin-right: 20px; 
 }
 
 .imagen-container img {
@@ -387,4 +389,51 @@ footer {
 .mas-info i {
   color: #ffffff;
   font-size: 25px;
+}
+
+/* ARTÍCULO INVERSO */
+.articulo-inverso {
+  display: flex;
+  margin-bottom: 30px;
+  position: relative;
+  padding-bottom: 25px;
+  padding-left: 0;
+}
+
+.articulo-inverso::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0; /* Línea comienza desde la izquierda */
+  width: 80%;
+  height: 1px;
+  background-color: #fff;
+}
+
+.articulo-inverso .imagen-container {
+  order: 2;
+  width: 120px;
+  height: 120px;
+  margin-right: 20px; /* Margen del borde derecho */
+  margin-left: 10px;
+}
+
+.articulo-inverso .contenido {
+  order: 1;
+  flex-grow: 1;
+  text-align: right; /* Alineación derecha del texto */
+  padding-left: 40px; /* Espacio para el botón + */
+  padding-right: 10px; /* Espacio entre texto e imagen */
+}
+
+/* Posicionamiento del botón + para artículo inverso */
+.articulo-inverso .mas-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  transform: translateY(50%);
+}
+
+.articulo-inverso .mas-info:hover {
+  transform: translateY(50%) scale(1.1);
 }
