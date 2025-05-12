@@ -16,7 +16,7 @@
 
 .tit-seccion {
     width: 50%;
-    margin: 5vh auto 0 auto;
+    margin: 5vh auto 5vh auto;
     display: block;
 }
 
@@ -24,7 +24,7 @@
     font-size: 1.5em;
     color: #ffffff;
     opacity: 0.5;
-    margin: 0.5vh 0 0 3vh;
+    margin: 0.5vh 0 2.5vh 3vh;
 }
 
 .ilustraciones-container {
@@ -53,10 +53,11 @@
 /*Cards fotografía*/
 .boton-fotografia-container {
     width: 100%;
-    padding: 20px;
+    padding: 0 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 0; /* Aseguramos que no hay margen superior adicional */
 }
 
 .boton-fotografia {
@@ -70,7 +71,6 @@
     text-decoration: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 20px; /* Espacio después de la imagen de Fotografía */
 }
 
 .boton-imagen-fondo {
