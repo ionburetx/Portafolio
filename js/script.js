@@ -41,7 +41,6 @@ function initBioTransition() {
 
 document.addEventListener('DOMContentLoaded', function() {
     initLanguageSelector(); // Solo funciona si hay elementos
-    initBioTransition();    // Solo funciona en bienvenida.html
 });
 
 // ================
@@ -272,12 +271,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const transitionOverlay = document.querySelector('.transition-overlay');
     const path = document.querySelector('.line');
     
-    // Path más curvo y elaborado
-    path.setAttribute('d', `
-        M5,5
-        C20,30 40,20 50,50
-        S80,30 95,95
-    `);
+    // Calculamos la longitud del trazo
+    const pathLength = path.getTotalLength();
+    path.style.strokeDasharray = pathLength;
+    path.style.strokeDashoffset = pathLength;
+
+    // Eliminar el event listener duplicado (el de initBioTransition)
+    startButton.removeEventListener('click', initBioTransition);
+    
+    // Definimos un camino más elaborado con curvas
     
     startButton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -285,8 +287,41 @@ document.addEventListener('DOMContentLoaded', function() {
         // Iniciar animación
         body.classList.add('animation-active');
         
-        // Configuración de la animación
-        const duration = 4000; // Aumentado a 4 segundos
+        // Configuración de la animación (8 segundos)
+        const duration = 8000;
+        const startTime = performance.now();
+        
+        // Función de animación suavizada
+        function animateLogo(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Animación del trazado de la línea
+            document.addEventListener('DOMContentLoaded', function() {
+    const startButton = document.getElementById('start-animation');
+    const body = document.body;
+    const animatedLogo = document.getElementById('animated-logo');
+    const transitionOverlay = document.querySelector('.transition-overlay');
+    const path = document.querySelector('.line');
+    
+    // Calculamos la longitud del trazo
+    const pathLength = path.getTotalLength();
+    path.style.strokeDasharray = pathLength;
+    path.style.strokeDashoffset = pathLength;
+    
+    // Eliminar el event listener duplicado (el de initBioTransition)
+    startButton.removeEventListener('click', initBioTransition);
+    
+    // Definimos un camino más elaborado con curvas
+    
+    startButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Iniciar animación
+        body.classList.add('animation-active');
+        
+        // Configuración de la animación (8 segundos)
+        const duration = 8000;
         const startTime = performance.now();
         
         // Función de animación suavizada
@@ -297,37 +332,97 @@ document.addEventListener('DOMContentLoaded', function() {
             // Animación del trazado de la línea
             path.style.strokeDashoffset = 2000 * (1 - progress);
             
-            // Movimiento del logo
+            // Movimiento del logo siguiendo el path
             const pathLength = path.getTotalLength();
             const point = path.getPointAtLength(progress * pathLength);
             
-            // Aplicamos transformación con suavizado
-            animatedLogo.style.transform = `
-                translate(${point.x}vw, ${point.y}vh)
-                scale(${1 - progress * 0.5}) /* Efecto de reducción gradual */
-            `;
+            // Convertimos coordenadas SVG a viewport
+            const svg = document.querySelector('.line-path');
+            const pt = svg.createSVGPoint();
+            pt.x = point.x;
+            pt.y = point.y;
+            const globalPoint = pt.matrixTransform(svg.getScreenCTM().inverse());
             
-            // Opacidad gradual al final
-            if (progress > 0.7) {
-                animatedLogo.style.opacity = 1 - (progress - 0.7) / 0.3;
+            // Movimiento más suave con easing
+            const easedProgress = easeInOutCubic(progress);
+            const logoX = globalPoint.x - window.scrollX - (animatedLogo.offsetWidth / 2);
+            const logoY = globalPoint.y - window.scrollY - (animatedLogo.offsetHeight / 2);
+            
+            animatedLogo.style.transform = `translate(${logoX}px, ${logoY}px) rotate(${progress * 360}deg)`;
+            
+            // Opacidad gradual al final (últimos 20% de la animación)
+            if (progress > 0.8) {
+                animatedLogo.style.opacity = 1 - (progress - 0.8) / 0.2;
             }
             
             if (progress < 1) {
                 requestAnimationFrame(animateLogo);
             } else {
-                // Transición final más suave
+                // Solo cuando la animación termine completamente:
+                // 1. Mostramos el overlay
+                transitionOverlay.style.opacity = '1';
+                // 2. Después de 1.5 segundos, redirigimos
                 setTimeout(() => {
-                    transitionOverlay.style.opacity = '1';
-                    setTimeout(() => {
-                        window.location.href = 'biografia.html';
-                    }, 1500); // Más tiempo para el fade final
-                }, 500);
+                    window.location.href = 'biografia.html';
+                }, 1500);
             }
+        }
+        
+        // Función de easing para movimiento más natural
+        function easeInOutCubic(t) {
+            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
         }
         
         requestAnimationFrame(animateLogo);
     });
 });
+            
+            // Movimiento del logo siguiendo el path
+            const pathLength = path.getTotalLength();
+            const point = path.getPointAtLength(progress * pathLength);
+            
+            // Convertimos coordenadas SVG a viewport
+            const svg = document.querySelector('.line-path');
+            const pt = svg.createSVGPoint();
+            pt.x = point.x;
+            pt.y = point.y;
+            const globalPoint = pt.matrixTransform(svg.getScreenCTM().inverse());
+            
+            // Movimiento más suave con easing
+            const easedProgress = easeInOutCubic(progress);
+            const logoX = globalPoint.x - window.scrollX - (animatedLogo.offsetWidth / 2);
+            const logoY = globalPoint.y - window.scrollY - (animatedLogo.offsetHeight / 2);
+            
+            animatedLogo.style.transform = `translate(${logoX}px, ${logoY}px) rotate(${progress * 360}deg)`;
+            
+            // Opacidad gradual al final (últimos 20% de la animación)
+            if (progress > 0.8) {
+                animatedLogo.style.opacity = 1 - (progress - 0.8) / 0.2;
+            }
+            
+            if (progress < 1) {
+                requestAnimationFrame(animateLogo);
+            } else {
+                // Solo cuando la animación termine completamente:
+                // 1. Mostramos el overlay
+                transitionOverlay.style.opacity = '1';
+                // 2. Después de 1.5 segundos, redirigimos
+                setTimeout(() => {
+                    window.location.href = 'biografia.html';
+                }, 1500);
+            }
+        }
+        
+        // Función de easing para movimiento más natural
+        function easeInOutCubic(t) {
+            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
+        
+        requestAnimationFrame(animateLogo);
+    });
+});
+
+// Eliminar la función initBioTransition ya que no la necesitamos más
 
 // ======================
 //CARRUSEL ILUSTRACIONES   
