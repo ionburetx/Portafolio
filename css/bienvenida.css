@@ -13,9 +13,8 @@
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background: url('../imagenes/fondomain.jpg') no-repeat center center fixed;
+  background: url('../imagenes/fondomain.jpg') no-repeat right center;
   background-size: cover;
-  background-position: 100% center;
   color: white;
   text-align: center;
   position: relative;

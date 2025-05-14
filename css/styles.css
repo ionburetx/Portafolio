@@ -11,7 +11,7 @@ body {
   justify-content: center;
   flex-direction: column;
   min-height: -webkit-fill-available; /* Para navegadores móviles */
-  background: url('../imagenes/fondomain.jpg') no-repeat center center fixed;
+  background: url('../imagenes/fondomain.jpg') no-repeat right center;
   background-size: cover;
   color: white;
   text-align: center;

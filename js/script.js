@@ -12,48 +12,36 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Transición de página de idioma a bienvenida
-document.addEventListener('DOMContentLoaded', function() {
-    try {
-        var botones = document.querySelectorAll('.language-btn');
-        var overlay = document.querySelector('.transition-overlay');
-        
-        botones.forEach(function(boton) {
-            boton.addEventListener('click', function() {
-                if (overlay) {
-                    overlay.style.opacity = '1';
-                }
-                
-                setTimeout(function() {
-                    window.location.href = 'bienvenida.html';
-                }, 1000);
+function initLanguageSelector() {
+    const languageButtons = document.querySelectorAll('.language-btn');
+    const overlay = document.querySelector('.transition-overlay');
+    
+    if (languageButtons.length > 0 && overlay) {
+        languageButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                overlay.style.opacity = '1';
+                setTimeout(() => window.location.href = 'bienvenida.html', 1000);
             });
         });
-    } catch (e) {
-        console.error("Error en la transición de idioma:", e);
     }
-});
+}
 
-// Transición de página de bienvenida a biografía
-document.addEventListener('DOMContentLoaded', function() {
-    const botonAqui = document.querySelector('.boton-aqui');
+function initBioTransition() {
+    const botonAqui = document.querySelector('.link--highlight');
     const transitionOverlay = document.querySelector('.transition-overlay');
     
     if (botonAqui && transitionOverlay) {
-        botonAqui.addEventListener('click', function(e) {
-            e.preventDefault(); // Evita la navegación inmediata
-
-            // Activa la transición a negro
+        botonAqui.addEventListener('click', (e) => {
+            e.preventDefault();
             transitionOverlay.style.opacity = '1';
-            transitionOverlay.style.pointerEvents = 'all';
-
-            // Espera a que termine la transición y redirige
-            setTimeout(function() {
-                window.location.href = 'biografia.html';
-            }, 1000); // 1 segundo (igual que la duración de la transición en CSS)
+            setTimeout(() => window.location.href = 'biografia.html', 1000);
         });
-    } else {
-        console.error("No se encontró el botón (.boton-aqui) o el overlay (.transition-overlay)");
     }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initLanguageSelector(); // Solo funciona si hay elementos
+    initBioTransition();    // Solo funciona en bienvenida.html
 });
 
 // ================
@@ -62,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const menuButton = document.getElementById('menuButton');
     const menuNav = document.getElementById('menuNav');
+    if (!menuButton || !menuNav) return;
     
     // Función para alternar el menú
     function toggleMenu() {
@@ -347,10 +336,14 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const carrusel = document.querySelector('.carrusel');
     const imagen = document.querySelector('.carrusel-img1');
+    if (!carrusel || !imagen) return; 
     let isDragging = false;
-    let startX, currentX;
+    let startX, currentX, lastX, velocity = 0;
+    let lastTime;
     let animationId;
-    const duration = 40000; // 30 segundos (ajustable)
+    const duration = 40000; // 40 segundos para la animación automática
+    const friction = 0.95; // Fricción para el deslizamiento inercial
+    const minVelocity = 0.1; // Velocidad mínima para continuar el movimiento
     
     function initCarousel() {
         if (!imagen.complete) {
@@ -361,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const containerWidth = carrusel.offsetWidth;
         const imgWidth = imagen.offsetWidth;
         
-        // Posición inicial: borde izquierdo en mitad de pantalla
+        // Posición inicial: borde izquierdo en 30% del contenedor
         currentX = containerWidth * 0.3;
         applyTransform();
         
@@ -379,8 +372,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     ? 2 * progress * progress 
                     : 1 - Math.pow(-2 * progress + 2, 2) / 2;
                 
-                // Mover desde mitad de pantalla hasta borde derecho
-                currentX = (containerWidth * 0.25) - (easing * desplazamientoNecesario);
+                // Mover desde posición inicial hasta borde derecho
+                currentX = (containerWidth * 0.3) - (easing * desplazamientoNecesario);
                 applyTransform();
                 
                 if (progress < 1 && !isDragging) {
@@ -391,15 +384,14 @@ document.addEventListener('DOMContentLoaded', function() {
             animationId = requestAnimationFrame(runAnimation);
         }
         
-        // Iniciar animación
-        animate();
-        
-        // Eventos táctiles
+        // Eventos táctiles mejorados
         carrusel.addEventListener('touchstart', (e) => {
             cancelAnimationFrame(animationId);
             isDragging = true;
             startX = e.touches[0].clientX;
-            currentX = parseInt(getComputedStyle(imagen).left) || (containerWidth / 2);
+            lastX = currentX;
+            lastTime = performance.now();
+            velocity = 0;
             e.preventDefault();
         });
         
@@ -408,30 +400,131 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             const x = e.touches[0].clientX;
-            const diff = x - startX;
-            currentX = currentX + diff;
+            const now = performance.now();
+            const deltaTime = now - lastTime;
             
-            // Limitar el desplazamiento
-            const maxX = containerWidth / 2; // No pasar de la posición inicial
-            const minX = (containerWidth / 2) - (imgWidth - (containerWidth / 2)); // Hasta borde derecho
-            currentX = Math.max(minX, Math.min(currentX, maxX));
-            
-            applyTransform();
+            if (deltaTime > 0) {
+                const deltaX = x - startX;
+                currentX = lastX + deltaX;
+                
+                // Calcular velocidad para el efecto inercial
+                velocity = (currentX - lastX) / deltaTime;
+                lastX = currentX;
+                lastTime = now;
+                
+                // Limitar el desplazamiento
+                const maxX = containerWidth * 0.3;
+                const minX = maxX - (imgWidth - containerWidth * 0.7);
+                currentX = Math.max(minX, Math.min(currentX, maxX));
+                
+                applyTransform();
+            }
         });
         
         carrusel.addEventListener('touchend', () => {
             isDragging = false;
+            
+            // Aplicar efecto inercial si hay suficiente velocidad
+            if (Math.abs(velocity) > minVelocity) {
+                const inertiaAnimation = () => {
+                    velocity *= friction; // Reducir velocidad por fricción
+                    currentX += velocity * 16; // 16ms ≈ 60fps
+                    
+                    // Limitar movimiento dentro de los bordes
+                    const maxX = containerWidth * 0.3;
+                    const minX = maxX - (imgWidth - containerWidth * 0.7);
+                    
+                    if (currentX > maxX) {
+                        currentX = maxX;
+                        velocity = 0;
+                    } else if (currentX < minX) {
+                        currentX = minX;
+                        velocity = 0;
+                    }
+                    
+                    applyTransform();
+                    
+                    // Continuar animación si aún hay velocidad
+                    if (Math.abs(velocity) > minVelocity) {
+                        requestAnimationFrame(inertiaAnimation);
+                    } else {
+                        // Reiniciar animación automática después de detenerse
+                        animate();
+                    }
+                };
+                
+                inertiaAnimation();
+            } else {
+                // Reiniciar animación automática si no hay movimiento inercial
+                animate();
+            }
         });
+        
+        // Iniciar animación automática
+        animate();
     }
     
     function applyTransform() {
-        imagen.style.left = `${currentX}px`;
+        // Usamos transform en lugar de left para mejor rendimiento
+        imagen.style.transform = `translateX(${currentX}px)`;
     }
     
-    // Iniciar
+    // Iniciar el carrusel
     initCarousel();
 });
 
-// ==========================
-//ANIMACIÓN ENTRADA ELEMENTOS  
-// ==========================
+// ======================
+//BOTONES GALERIA FOTOS   
+// ====================== 
+
+// Guardar posición del scroll cuando se hace clic en un enlace a la galería
+document.querySelectorAll('a[href^="galeria-fotografia.html"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Guardar posición actual del scroll
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+        // Redirigir después de guardar
+        setTimeout(() => window.location.href = this.href, 50);
+    });
+});
+
+// Restaurar scroll si venimos de la galería
+document.addEventListener('DOMContentLoaded', function() {
+    if (sessionStorage.getItem('fromGallery') === 'true') {
+        const savedPosition = sessionStorage.getItem('scrollPosition');
+        if (savedPosition) {
+            setTimeout(() => {
+                window.scrollTo(0, parseInt(savedPosition));
+                // Limpiar flags
+                sessionStorage.removeItem('fromGallery');
+                sessionStorage.removeItem('scrollPosition');
+            }, 100); // Pequeño delay para asegurar la renderización
+        }
+    }
+});
+
+// ======================
+// CIERRE DE GALERÍA CON TRANSICIÓN
+// ======================
+document.addEventListener('DOMContentLoaded', function() {
+    const botonCerrar = document.getElementById('botonCerrarGaleria');
+    const transitionOverlay = document.querySelector('.transition-overlay');
+    
+    if (botonCerrar && transitionOverlay) {
+        botonCerrar.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Activar transición
+            transitionOverlay.style.opacity = '1';
+            transitionOverlay.style.pointerEvents = 'all';
+            
+            // Guardar flag para restaurar scroll
+            sessionStorage.setItem('fromGallery', 'true');
+            
+            // Redirigir después de la transición
+            setTimeout(() => {
+                window.location.href = 'biografia.html';
+            }, 1000); // 1 segundo (igual que tus otras transiciones)
+        });
+    }
+});

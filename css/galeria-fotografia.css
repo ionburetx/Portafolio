@@ -1,0 +1,194 @@
+/* Mantener el contenedor centrado */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 15px;
+}
+
+/* galeria-fotografia.css */
+.titulo-categoria {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin-top: 10vh;
+    margin-bottom: 3vh;
+    text-align: center;
+}
+
+.galeria-contenedor {
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.galeria {
+    display: flex;
+    gap: 15px; /* Espacio entre columnas */
+}
+
+.galeria-columna {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre imágenes dentro de la columna */
+}
+
+.galeria-item {
+    width: 100%;
+}
+
+.galeria-item:last-child {
+    margin-bottom: 0; /* Elimina el margen del último elemento */
+}
+
+.galeria-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeria-item img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.galeria-item figcaption {
+    padding: 10px 0;
+    font-size: 0.8em;
+    color: #555;
+    text-align: center;
+}
+
+.contenedor-titulo {
+    position: relative; /* Permite posicionar el botón de forma absoluta */
+    width: 100%;
+    max-width: 1200px; /* Mismo ancho que tu galería */
+    margin: 10vh auto 3vh; /* Conserva tus márgenes verticales */
+    padding: 0 100px; /* Ajuste de padding para el botón */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; 
+}
+
+.titulo-categoria {
+    text-align: center; /* Centra el texto del h1 */
+    margin: 0; /* Elimina márgenes por defecto */
+    flex-grow: 1; 
+}
+
+/* Estilo compartido para todos los botones (cerrar y flechas) */
+.boton-cerrar,
+.boton-cambio-categoria {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ffffff; /* Blanco */
+    padding: 5px;
+    transition: transform 0.3s;
+}
+
+/* Botones de flecha - Posición relativa para centrado */
+.boton-cambio-categoria {
+    position: relative;
+    margin: 0 20px; /* Espacio entre botones y título */
+}
+
+/* Botón cerrar - Posición absoluta en esquina derecha */
+.boton-cerrar {
+    position: absolute;
+    right: 0px; /* Espacio desde el borde derecho */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 1s ease-in-out;
+} 
+
+/* Estilos para el lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; /* Fondo transparente */
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    overflow-y: auto;
+    padding: 80px 0; /* Espacio para header/footer */
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 70px; /* Debajo del header */
+    right: 10px;
+    color: #ffffff;
+    font-size: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+    padding: 10px;
+    transition: transform 0.3s;
+}
+
+.lightbox-close:hover {
+    transform: scale(1.2);
+}
+
+.lightbox-scroll-container {
+    width: 100%;
+    max-width: 1200px; /* Igual que tu galería */
+    margin: 0 auto;
+    padding: 0 20px; /* Márgenes laterales */
+    box-sizing: border-box;
+}
+
+.lightbox-images-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px 0;
+}
+
+.lightbox-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    display: block;
+}
+
+/* Ocultar solo el contenido del main excepto lightbox */
+.lightbox-active main > *:not(.lightbox) {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
