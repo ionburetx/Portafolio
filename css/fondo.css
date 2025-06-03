@@ -1,7 +1,31 @@
+html {
+    height: 100%;
+     overflow-x: hidden;
+}
+
 body {
     margin: 0;
     padding: 0;
-    min-height: 300vh;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
     background-attachment: fixed;
     transition: background 0.3s ease;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('../imagenes/fondobio.png');
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    -webkit-background-size: cover;  /* Para Safari */
+    -moz-background-size: cover;     /* Para Firefox */
+    -o-background-size: cover;       /* Para Opera */
+}
+
+/* Fix para iOS donde background-attachment: fixed no funciona bien */
+@supports (-webkit-touch-callout: none) {
+    body {
+        background-attachment: scroll;
+    }
 }
